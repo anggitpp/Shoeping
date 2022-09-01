@@ -3,13 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:supercharged/supercharged.dart';
 
 Color backgroundColor = '#161616'.toColor();
-Color yellowColor = '#E8FB7A'.toColor();
+Color mainColor = '#E8FB7A'.toColor();
 Color secondaryColor = '#808D9E'.toColor();
+Color darkGreyColor = '#262832'.toColor();
+Color lighterBlack = '#1B1B1B'.toColor();
 
 ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: backgroundColor,
 );
 
+TextStyle mediumText =
+    GoogleFonts.inter().copyWith(fontSize: 14, color: secondaryColor);
+TextStyle mediumLightText = GoogleFonts.inter()
+    .copyWith(fontSize: 14, color: secondaryColor, fontWeight: FontWeight.w300);
+TextStyle mediumMediumText = GoogleFonts.inter()
+    .copyWith(fontSize: 14, color: secondaryColor, fontWeight: FontWeight.w500);
 TextStyle largeText =
     GoogleFonts.inter().copyWith(fontSize: 16, color: secondaryColor);
 TextStyle largeLightText = GoogleFonts.inter()
