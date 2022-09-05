@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
+  intl: ^0.17.0
   pin_code_fields: ^7.4.0
   supercharged: ^2.1.1
 
@@ -51,6 +52,10 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/promo/
+    - assets/images/brand/
+    - assets/images/sepatu/
+    - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

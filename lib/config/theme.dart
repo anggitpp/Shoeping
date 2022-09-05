@@ -7,11 +7,18 @@ Color mainColor = '#E8FB7A'.toColor();
 Color secondaryColor = '#808D9E'.toColor();
 Color darkGreyColor = '#262832'.toColor();
 Color lighterBlack = '#1B1B1B'.toColor();
+Color darkerBlack = '#161616'.toColor();
+Color lightGrey = '#262626'.toColor();
+Color orangeColor = '#FFAC0C'.toColor();
 
 ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: backgroundColor,
 );
 
+TextStyle smallMediumText =
+    GoogleFonts.inter().copyWith(fontSize: 12, color: secondaryColor);
+TextStyle smallText =
+    GoogleFonts.inter().copyWith(fontSize: 12, color: secondaryColor);
 TextStyle mediumText =
     GoogleFonts.inter().copyWith(fontSize: 14, color: secondaryColor);
 TextStyle mediumLightText = GoogleFonts.inter()

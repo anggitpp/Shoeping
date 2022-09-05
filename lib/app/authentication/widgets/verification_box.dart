@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../../config/theme.dart';
+import '../../../config/theme.dart';
 
 class VerificationBox extends StatelessWidget {
   final int length;

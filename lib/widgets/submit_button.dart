@@ -21,7 +21,7 @@ class SubmitButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: isDark ? lighterBlack : mainColor,
+          backgroundColor: isDark ? lighterBlack : mainColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),

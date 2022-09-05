@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shoeping/app/authentication/screens/widgets/verification_box.dart';
+import 'package:shoeping/app/authentication/widgets/verification_box.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/widgets/submit_button.dart';
@@ -22,32 +22,32 @@ class ConfirmPinPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Text(
                 'Create your PIN',
                 style: veryLargeText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
                 'Last step, create your PIN number for security',
                 style: mediumLightText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 child: VerificationBox(4),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               SubmitButton(text: 'Continue', onTap: () {}),

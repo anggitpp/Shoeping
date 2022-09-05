@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:shoeping/app/authentication/screens/widgets/verification_box.dart';
+import 'package:shoeping/app/authentication/widgets/verification_box.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/widgets/submit_button.dart';

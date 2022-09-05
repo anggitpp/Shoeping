@@ -8,4 +8,5 @@ class RouteName {
   static const confirmPin = 'confirm-pin';
   static const verifyReset = 'verify-reset';
   static const resetPassword = 'reset-password';
+  static const detailProduct = 'detail-product';
 }
