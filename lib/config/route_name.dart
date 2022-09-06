@@ -9,4 +9,5 @@ class RouteName {
   static const verifyReset = 'verify-reset';
   static const resetPassword = 'reset-password';
   static const detailProduct = 'detail-product';
+  static const cart = 'cart';
 }

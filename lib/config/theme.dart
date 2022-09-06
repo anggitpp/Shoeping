@@ -10,6 +10,8 @@ Color lighterBlack = '#1B1B1B'.toColor();
 Color darkerBlack = '#161616'.toColor();
 Color lightGrey = '#262626'.toColor();
 Color orangeColor = '#FFAC0C'.toColor();
+Color borderColor = '#212121'.toColor();
+Color redColor = '#FF4E63'.toColor();
 
 ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: backgroundColor,
@@ -29,6 +31,8 @@ TextStyle largeText =
     GoogleFonts.inter().copyWith(fontSize: 16, color: secondaryColor);
 TextStyle largeLightText = GoogleFonts.inter()
     .copyWith(fontSize: 16, color: secondaryColor, fontWeight: FontWeight.w300);
+TextStyle largeMediumText = GoogleFonts.inter()
+    .copyWith(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500);
 TextStyle extraLargeText = GoogleFonts.poppins()
     .copyWith(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white);
 TextStyle extraLargeTitleText = GoogleFonts.inter()
