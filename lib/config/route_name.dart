@@ -10,4 +10,5 @@ class RouteName {
   static const resetPassword = 'reset-password';
   static const detailProduct = 'detail-product';
   static const cart = 'cart';
+  static const checkout = 'checkout';
 }

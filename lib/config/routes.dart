@@ -1,4 +1,5 @@
 import 'package:shoeping/app/cart/screens/cart_page.dart';
+import 'package:shoeping/app/checkout/screens/checkout_page.dart';
 
 import '../app/authentication/screens/confirm_pin_page.dart';
 import '../app/authentication/screens/create_pin_page.dart';
@@ -14,7 +15,7 @@ import '../app/home/screens/home_page/home_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const CartPage(),
+  RouteName.home: (context) => const CheckoutPage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),
@@ -25,4 +26,5 @@ final routes = {
   RouteName.resetPassword: (context) => const ResetPasswordPage(),
   RouteName.detailProduct: (context) => const DetailProductPage(),
   RouteName.cart: (context) => const CartPage(),
+  RouteName.checkout: (context) => const CheckoutPage(),
 };

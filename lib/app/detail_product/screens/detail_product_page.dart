@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 
+import '../../../widgets/default_divider.dart';
+
 class DetailProductPage extends StatelessWidget {
   const DetailProductPage({Key? key}) : super(key: key);
 
@@ -233,11 +235,7 @@ class DetailProductPage extends StatelessWidget {
                         SizedBox(
                           height: 18,
                         ),
-                        Container(
-                          width: AppSizes.phoneWidthMargin(context),
-                          height: 1,
-                          color: darkGreyColor,
-                        ),
+                        DefaultDivider(),
                         SizedBox(
                           height: 24,
                         ),
