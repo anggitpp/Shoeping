@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
+import 'package:shoeping/widgets/submit_button_with_icon.dart';
 
 import '../widgets/cart_product_box.dart';
+import '../widgets/remove_modal_bottom_sheet.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -73,7 +75,16 @@ class CartPage extends StatelessWidget {
                     SizedBox(
                       height: 22,
                     ),
-                    CartProductBox(),
+                    GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return RemoveModalBottomSheet();
+                              });
+                        },
+                        child: CartProductBox()),
                   ],
                 ),
               ),
@@ -111,37 +122,13 @@ class CartPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: AppSizes.phoneWidthMargin(context) / 2,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Checkout',
-                              style: mediumMediumText.copyWith(
-                                  color: backgroundColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: darkerBlack,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                    SubmitButtonWithIcon(
+                        color: mainColor,
+                        text: 'Checkout',
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: backgroundColor,
+                        ))
                   ],
                 ),
               ),
