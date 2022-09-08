@@ -1,3 +1,5 @@
+import 'package:shoeping/app/payment_method/screens/payment_method_page.dart';
+
 import '../app/address/screens/add_address_page.dart';
 import '../app/cart/screens/cart_page.dart';
 import '../app/checkout/screens/checkout_page.dart';
@@ -15,7 +17,7 @@ import '../app/home/screens/home_page/home_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const AddAddressPage(),
+  RouteName.home: (context) => const PaymentMethodPage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),
@@ -28,4 +30,5 @@ final routes = {
   RouteName.cart: (context) => const CartPage(),
   RouteName.checkout: (context) => const CheckoutPage(),
   RouteName.addAddress: (context) => const AddAddressPage(),
+  RouteName.paymentMethod: (context) => const PaymentMethodPage(),
 };

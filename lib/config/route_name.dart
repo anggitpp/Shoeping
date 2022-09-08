@@ -12,4 +12,5 @@ class RouteName {
   static const cart = 'cart';
   static const checkout = 'checkout';
   static const addAddress = 'add-address';
+  static const paymentMethod = 'payment-method';
 }

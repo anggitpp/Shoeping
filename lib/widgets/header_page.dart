@@ -24,7 +24,7 @@ class HeaderPage extends StatelessWidget {
           style: extraLargeText,
         ),
         rightWidget ??
-            SizedBox(
+            const SizedBox(
               width: 24,
             ),
       ],
