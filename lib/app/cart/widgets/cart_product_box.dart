@@ -12,7 +12,7 @@ class CartProductBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: AppSizes.phoneWidthMargin(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
@@ -23,7 +23,7 @@ class CartProductBox extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 width: 75,
                 height: 75,
                 decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class CartProductBox extends StatelessWidget {
                     color: lighterBlack),
                 child: Image.asset('assets/images/sepatu/sepatu-1.png'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Column(
@@ -41,7 +41,7 @@ class CartProductBox extends StatelessWidget {
                     'Metcon 7',
                     style: largeMediumText,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Row(
@@ -50,7 +50,7 @@ class CartProductBox extends StatelessWidget {
                         'Nike ·',
                         style: mediumMediumText,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Container(
@@ -68,7 +68,7 @@ class CartProductBox extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Text(
@@ -81,7 +81,7 @@ class CartProductBox extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -91,24 +91,24 @@ class CartProductBox extends StatelessWidget {
                 width: 16,
                 height: 16,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 2,
               ),
               Text(
                 'Move to Wishlist',
                 style: mediumText,
               ),
-              Spacer(),
+              const Spacer(),
               Icon(
                 Icons.delete_outline,
                 size: 18,
                 color: redColor,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 6,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
                   color: lighterBlack,
@@ -116,12 +116,12 @@ class CartProductBox extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.remove,
                       size: 20,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     Text(
@@ -129,10 +129,10 @@ class CartProductBox extends StatelessWidget {
                       style: mediumText.copyWith(
                           fontWeight: FontWeight.w600, color: Colors.white),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.add,
                       size: 20,
                       color: Colors.white,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 
@@ -25,7 +24,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Container(
@@ -54,21 +53,21 @@ class HomePage extends StatelessWidget {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                                 borderSide:
-                                    BorderSide(color: Colors.transparent),
+                                    const BorderSide(color: Colors.transparent),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.shopping_cart_outlined,
                           color: Colors.white,
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
                     Row(
@@ -87,7 +86,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               SizedBox(
@@ -100,12 +99,12 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: index == 0 ? AppSizes.defaultMargin : 0,
                           right: AppSizes.defaultMargin),
-                      child: PromoBox(),
+                      child: const PromoBox(),
                     );
                   },
                 ),
               ),
-              SizedBox(height: 36),
+              const SizedBox(height: 36),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSizes.defaultMargin),
@@ -123,7 +122,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               SizedBox(
@@ -144,7 +143,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 36),
+              const SizedBox(height: 36),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppSizes.defaultMargin),
@@ -164,13 +163,13 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Wrap(
                       spacing: 20,
                       runSpacing: 20,
                       children: List.generate(
                         4,
-                        (index) => ProductBox(),
+                        (index) => const ProductBox(),
                       ),
                     ),
                   ],

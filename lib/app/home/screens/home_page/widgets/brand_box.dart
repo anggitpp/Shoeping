@@ -18,7 +18,7 @@ class BrandBox extends StatelessWidget {
         Container(
           width: 56,
           height: 56,
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: lighterBlack,
@@ -28,7 +28,7 @@ class BrandBox extends StatelessWidget {
             image,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         Text(

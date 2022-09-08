@@ -19,12 +19,8 @@ class VerificationBox extends StatelessWidget {
       length: length,
       animationType: AnimationType.fade,
       textStyle: veryLargeText.copyWith(fontWeight: FontWeight.bold),
-      onChanged: (string) {
-        print(string);
-      },
-      onCompleted: (string) {
-        print(string);
-      },
+      onChanged: (string) {},
+      onCompleted: (string) {},
       pinTheme: PinTheme(
         selectedColor: mainColor,
         errorBorderColor: lighterBlack,

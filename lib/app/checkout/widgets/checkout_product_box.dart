@@ -12,7 +12,7 @@ class CheckoutProductBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: AppSizes.phoneWidthMargin(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
@@ -23,7 +23,7 @@ class CheckoutProductBox extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 width: 75,
                 height: 75,
                 decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class CheckoutProductBox extends StatelessWidget {
                     color: lighterBlack),
                 child: Image.asset('assets/images/sepatu/sepatu-1.png'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Column(
@@ -41,7 +41,7 @@ class CheckoutProductBox extends StatelessWidget {
                     'Metcon 7',
                     style: largeMediumText,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Row(
@@ -50,7 +50,7 @@ class CheckoutProductBox extends StatelessWidget {
                         'Nike ·',
                         style: mediumMediumText,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Container(
@@ -68,7 +68,7 @@ class CheckoutProductBox extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Text(
@@ -79,7 +79,7 @@ class CheckoutProductBox extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 width: 36,
                 height: 36,

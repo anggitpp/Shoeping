@@ -29,11 +29,11 @@ class DetailProductPage extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: AppSizes.defaultMargin),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class DetailProductPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.arrow_back,
                               color: Colors.white,
                             ),
@@ -49,18 +49,18 @@ class DetailProductPage extends StatelessWidget {
                               'Detail Product',
                               style: extraLargeText,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.shopping_cart_outlined,
                               color: Colors.white,
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         Container(
                           width: AppSizes.phoneWidthMargin(context),
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           height: 302,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
@@ -75,14 +75,14 @@ class DetailProductPage extends StatelessWidget {
                                 width: 244,
                                 height: 200,
                               ),
-                              SizedBox(height: 24),
+                              const SizedBox(height: 24),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: List.generate(
                                   5,
                                   (index) => Container(
-                                    padding: EdgeInsets.all(6),
+                                    padding: const EdgeInsets.all(6),
                                     width: 49,
                                     height: 46,
                                     decoration: BoxDecoration(
@@ -97,7 +97,7 @@ class DetailProductPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 17,
                         ),
                         Row(
@@ -109,7 +109,7 @@ class DetailProductPage extends StatelessWidget {
                                   'Metcon 8 Superblack',
                                   style: veryLargeText.copyWith(fontSize: 22),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 Row(
@@ -118,7 +118,7 @@ class DetailProductPage extends StatelessWidget {
                                       'Nike ·',
                                       style: mediumMediumText,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 4,
                                     ),
                                     Container(
@@ -135,7 +135,7 @@ class DetailProductPage extends StatelessWidget {
                                             color: mainColor),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 4,
                                     ),
                                     Icon(Icons.star,
@@ -170,7 +170,7 @@ class DetailProductPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         Container(
@@ -178,21 +178,21 @@ class DetailProductPage extends StatelessWidget {
                           height: 1,
                           color: darkGreyColor,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Text(
                           'Description',
                           style: mediumMediumText.copyWith(color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         RichText(
                           text: TextSpan(
                             style: smallText.copyWith(color: Colors.white),
                             children: [
-                              TextSpan(
+                              const TextSpan(
                                 text:
                                     'You chase the clock, challenging & encouraging each other all in the name of achieving goals & making gains. ',
                               ),
@@ -203,14 +203,14 @@ class DetailProductPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         Text(
                           'Size (US)',
                           style: mediumMediumText.copyWith(color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -232,11 +232,11 @@ class DetailProductPage extends StatelessWidget {
                               )
                               .toList(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
-                        DefaultDivider(),
-                        SizedBox(
+                        const DefaultDivider(),
+                        const SizedBox(
                           height: 24,
                         ),
                         Row(
@@ -249,7 +249,7 @@ class DetailProductPage extends StatelessWidget {
                                   'Total Price',
                                   style: mediumText,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -282,7 +282,7 @@ class DetailProductPage extends StatelessWidget {
                                           color: backgroundColor,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 6,
                                     ),
                                     Icon(
@@ -295,7 +295,7 @@ class DetailProductPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                       ],

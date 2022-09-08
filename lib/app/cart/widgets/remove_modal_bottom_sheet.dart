@@ -14,7 +14,7 @@ class RemoveModalBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
-      padding: EdgeInsets.all(AppSizes.defaultMargin),
+      padding: const EdgeInsets.all(AppSizes.defaultMargin),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -27,18 +27,18 @@ class RemoveModalBottomSheet extends StatelessWidget {
             decoration: BoxDecoration(
                 color: borderColor, borderRadius: BorderRadius.circular(3)),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Text(
             'Remove From Cart?',
             style: extraLargeTitleText.copyWith(color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          CartProductBox(),
-          SizedBox(
+          const CartProductBox(),
+          const SizedBox(
             height: 24,
           ),
           Row(
@@ -46,18 +46,18 @@ class RemoveModalBottomSheet extends StatelessWidget {
               SubmitButtonWithIcon(
                 color: lighterBlack,
                 text: 'Cancel',
-                icon: Icon(Icons.highlight_remove, color: Colors.white),
+                icon: const Icon(Icons.highlight_remove, color: Colors.white),
                 isDark: true,
                 width: AppSizes.phoneWidthMargin(context) / 2 - 6,
                 onTap: () => Navigator.pop(context),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               SubmitButtonWithIcon(
                 color: redColor,
                 text: 'Remove',
-                icon: Icon(Icons.delete_outline, color: Colors.white),
+                icon: const Icon(Icons.delete_outline, color: Colors.white),
                 isDark: true,
                 width: AppSizes.phoneWidthMargin(context) / 2 - 6,
                 onTap: () => Navigator.pop(context),

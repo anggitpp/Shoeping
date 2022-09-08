@@ -24,13 +24,13 @@ class CartPage extends StatelessWidget {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(AppSizes.defaultMargin),
+                padding: const EdgeInsets.all(AppSizes.defaultMargin),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                         ),
@@ -38,12 +38,12 @@ class CartPage extends StatelessWidget {
                           'My Carts',
                           style: extraLargeText,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 24,
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     Row(
@@ -51,7 +51,7 @@ class CartPage extends StatelessWidget {
                         Container(
                           width: 30,
                           height: 30,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       'assets/images/store/adidas.png'),
@@ -59,7 +59,7 @@ class CartPage extends StatelessWidget {
                               shape: BoxShape.circle),
                           alignment: Alignment.center,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         Text(
@@ -68,11 +68,11 @@ class CartPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-                    CartProductBox(),
-                    SizedBox(
+                    const CartProductBox(),
+                    const SizedBox(
                       height: 22,
                     ),
                     GestureDetector(
@@ -81,10 +81,10 @@ class CartPage extends StatelessWidget {
                               backgroundColor: Colors.transparent,
                               context: context,
                               builder: (BuildContext context) {
-                                return RemoveModalBottomSheet();
+                                return const RemoveModalBottomSheet();
                               });
                         },
-                        child: CartProductBox()),
+                        child: const CartProductBox()),
                   ],
                 ),
               ),
@@ -94,7 +94,7 @@ class CartPage extends StatelessWidget {
               child: Container(
                 width: AppSizes.phoneWidth(context),
                 height: 100,
-                padding: EdgeInsets.all(AppSizes.defaultMargin),
+                padding: const EdgeInsets.all(AppSizes.defaultMargin),
                 decoration: BoxDecoration(
                   border: Border(top: BorderSide(color: borderColor, width: 1)),
                 ),
@@ -109,7 +109,7 @@ class CartPage extends StatelessWidget {
                           'Total Price',
                           style: mediumText,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4,
                         ),
                         Text(

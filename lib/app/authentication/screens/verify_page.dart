@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shoeping/app/authentication/widgets/verification_box.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
@@ -23,25 +22,25 @@ class VerifyPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Text(
                 'Verify Code',
                 style: veryLargeText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               RichText(
                 text: TextSpan(
                   style: largeText.copyWith(height: 1.5),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text:
                           'Please enter the code we just sent to your phone number ',
                     ),
@@ -52,14 +51,14 @@ class VerifyPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 child: VerificationBox(4),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -67,7 +66,7 @@ class VerifyPage extends StatelessWidget {
                   text: TextSpan(
                     style: largeText.copyWith(height: 1.5),
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Resend code in ',
                       ),
                       TextSpan(
@@ -78,7 +77,7 @@ class VerifyPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               SubmitButton(text: 'Continue', onTap: () {}),

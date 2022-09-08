@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:shoeping/app/authentication/widgets/verification_box.dart';
-import 'package:shoeping/config/constant.dart';
-import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/submit_button.dart';
+import '../../../app/authentication/widgets/verification_box.dart';
+import '../../../config/constant.dart';
+import '../../../config/theme.dart';
+import '../../../widgets/submit_button.dart';
 
 class CreatePinPage extends StatelessWidget {
   const CreatePinPage({Key? key}) : super(key: key);

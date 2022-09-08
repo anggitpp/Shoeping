@@ -23,14 +23,14 @@ class CheckoutPagePriceListItem extends StatelessWidget {
             title,
             style: mediumText,
           ),
-          Spacer(),
+          const Spacer(),
           discount != null
               ? Text(
                   '$discount ',
                   style: mediumMediumText.copyWith(
                       decoration: TextDecoration.lineThrough),
                 )
-              : SizedBox(),
+              : const SizedBox(),
           Text(
             item,
             style: mediumMediumText.copyWith(color: Colors.white),

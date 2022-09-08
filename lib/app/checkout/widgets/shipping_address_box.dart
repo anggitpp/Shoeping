@@ -20,7 +20,7 @@ class ShippingAddressBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: 200,
       height: 160,
       decoration: BoxDecoration(
@@ -37,12 +37,13 @@ class ShippingAddressBox extends StatelessWidget {
                 name,
                 style: mediumMediumText.copyWith(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               isDefault
                   ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                           color: mainColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(6)),
@@ -51,17 +52,17 @@ class ShippingAddressBox extends StatelessWidget {
                         style: smallText.copyWith(color: mainColor),
                       ),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Text(
             phone,
             style: mediumMediumText.copyWith(color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           SizedBox(

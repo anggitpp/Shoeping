@@ -14,7 +14,7 @@ class ChooseAddressModalBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 380,
-      padding: EdgeInsets.symmetric(vertical: AppSizes.defaultMargin),
+      padding: const EdgeInsets.symmetric(vertical: AppSizes.defaultMargin),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -27,14 +27,14 @@ class ChooseAddressModalBottomSheet extends StatelessWidget {
             decoration: BoxDecoration(
                 color: borderColor, borderRadius: BorderRadius.circular(3)),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Text(
             'Shipping Address',
             style: extraLargeTitleText.copyWith(color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           SizedBox(
@@ -59,14 +59,14 @@ class ChooseAddressModalBottomSheet extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           SubmitButtonWithIcon(
             width: AppSizes.phoneWidthMargin(context),
             color: lighterBlack,
             text: 'Add Address',
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             isDark: true,
           ),
         ],

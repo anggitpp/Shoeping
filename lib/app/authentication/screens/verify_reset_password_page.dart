@@ -22,25 +22,25 @@ class VerifyResetPasswordPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Text(
                 'Reset Password',
                 style: veryLargeText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               RichText(
                 text: TextSpan(
                   style: largeText.copyWith(height: 1.5),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text:
                           'Please enter the code we just sent to your phone number ',
                     ),
@@ -51,14 +51,14 @@ class VerifyResetPasswordPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 child: VerificationBox(4),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -66,7 +66,7 @@ class VerifyResetPasswordPage extends StatelessWidget {
                   text: TextSpan(
                     style: largeText.copyWith(height: 1.5),
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Resend code in ',
                       ),
                       TextSpan(
@@ -77,7 +77,7 @@ class VerifyResetPasswordPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               SubmitButton(text: 'Continue', onTap: () {}),

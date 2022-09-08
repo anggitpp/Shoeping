@@ -17,7 +17,7 @@ class ProductBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
             width: 155,
             height: 125,
             decoration: BoxDecoration(
@@ -26,7 +26,7 @@ class ProductBox extends StatelessWidget {
             ),
             child: Image.asset('assets/images/sepatu/sepatu-1.png'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Text(
@@ -34,7 +34,7 @@ class ProductBox extends StatelessWidget {
             style: largeText.copyWith(
                 color: Colors.white, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Row(
@@ -43,7 +43,7 @@ class ProductBox extends StatelessWidget {
                 'Nike ·',
                 style: mediumMediumText,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 4,
               ),
               Container(
@@ -61,7 +61,7 @@ class ProductBox extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(

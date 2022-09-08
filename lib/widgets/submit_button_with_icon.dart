@@ -43,7 +43,7 @@ class SubmitButtonWithIcon extends StatelessWidget {
                   color: isDark ? Colors.white : backgroundColor,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               width: 6,
             ),
             icon

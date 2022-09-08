@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shoeping/app/authentication/widgets/verification_box.dart';
 import 'package:shoeping/app/authentication/widgets/authentication_text_field.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
@@ -25,25 +24,25 @@ class ResetPasswordPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Text(
                 'Create New Password',
                 style: veryLargeText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
                 'Enter your new password below correctly',
                 style: largeLightText,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               AuthenticationTextField(
@@ -53,7 +52,7 @@ class ResetPasswordPage extends StatelessWidget {
                     color: secondaryColor,
                   ),
                   controller: passwordController),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               AuthenticationTextField(
@@ -62,8 +61,8 @@ class ResetPasswordPage extends StatelessWidget {
                     Icons.lock,
                     color: secondaryColor,
                   ),
-                  controller: passwordController),
-              SizedBox(
+                  controller: retypePasswordController),
+              const SizedBox(
                 height: 80,
               ),
               SubmitButton(text: 'Create New Password', onTap: () {}),

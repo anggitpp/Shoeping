@@ -33,18 +33,18 @@ class CheckoutPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Text(
                       'Shipping Address',
                       style: largeMediumText,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Container(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
                         color: lighterBlack,
@@ -63,7 +63,7 @@ class CheckoutPage extends StatelessWidget {
                               color: mainColor,
                             ),
                           ),
-                          SizedBox(width: 6),
+                          const SizedBox(width: 6),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -71,7 +71,7 @@ class CheckoutPage extends StatelessWidget {
                                 'Rumah Anggit',
                                 style: mediumText.copyWith(color: Colors.white),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 4,
                               ),
                               Text(
@@ -80,17 +80,17 @@ class CheckoutPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           GestureDetector(
                             onTap: () {
                               showModalBottomSheet(
                                   backgroundColor: Colors.transparent,
                                   context: context,
                                   builder: ((context) {
-                                    return ChooseAddressModalBottomSheet();
+                                    return const ChooseAddressModalBottomSheet();
                                   }));
                             },
-                            child: Icon(
+                            child: const Icon(
                               MdiIcons.pencil,
                               color: Colors.white,
                             ),
@@ -98,34 +98,34 @@ class CheckoutPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Text(
                       'Order List',
                       style: largeMediumText,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Column(
                       children: List.generate(
                         5,
-                        (index) => Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
+                        (index) => const Padding(
+                          padding: EdgeInsets.only(bottom: 16),
                           child: CheckoutProductBox(),
                         ),
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Text(
                       'Promo Code',
                       style: largeMediumText,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
                         color: lighterBlack,
@@ -136,7 +136,7 @@ class CheckoutPage extends StatelessWidget {
                             MdiIcons.brightnessPercent,
                             color: mainColor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 6,
                           ),
                           Text(
@@ -146,14 +146,14 @@ class CheckoutPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
-                    DefaultDivider(),
-                    SizedBox(
+                    const DefaultDivider(),
+                    const SizedBox(
                       height: 24,
                     ),
-                    CheckoutPagePriceListItem(
+                    const CheckoutPagePriceListItem(
                       title: 'Quantity',
                       item: '4 Items',
                     ),
@@ -184,7 +184,7 @@ class CheckoutPage extends StatelessWidget {
                               locale: 'id', decimalDigits: 0, symbol: 'IDR ')
                           .format(12517000),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 80,
                     ),
                   ],
@@ -196,7 +196,7 @@ class CheckoutPage extends StatelessWidget {
               child: Container(
                 width: AppSizes.phoneWidth(context),
                 height: 100,
-                padding: EdgeInsets.all(AppSizes.defaultMargin),
+                padding: const EdgeInsets.all(AppSizes.defaultMargin),
                 decoration: BoxDecoration(
                   color: backgroundColor,
                   border: Border(top: BorderSide(color: borderColor, width: 1)),

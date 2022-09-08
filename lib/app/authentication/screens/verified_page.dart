@@ -14,7 +14,7 @@ class VerifiedPage extends StatelessWidget {
           children: [
             Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 150,
                 ),
                 Container(
@@ -24,13 +24,13 @@ class VerifiedPage extends StatelessWidget {
                     color: lighterBlack,
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.check,
                     size: 65,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Text(
@@ -38,12 +38,12 @@ class VerifiedPage extends StatelessWidget {
                   style: veryLargeText.copyWith(
                       fontSize: 24, fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: AppSizes.defaultMargin),
                   width: AppSizes.phoneWidthMargin(context),
                   child: Column(
                     children: [
@@ -56,7 +56,7 @@ class VerifiedPage extends StatelessWidget {
                         text: TextSpan(
                           style: largeLightText.copyWith(height: 1.5),
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: 'lets enjoy ',
                             ),
                             TextSpan(
@@ -64,7 +64,7 @@ class VerifiedPage extends StatelessWidget {
                               style:
                                   largeLightText.copyWith(color: Colors.white),
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: 'featured',
                             ),
                           ],
@@ -84,7 +84,7 @@ class VerifiedPage extends StatelessWidget {
                     text: 'Create PIN',
                     onTap: () {},
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 18,
                   ),
                   SubmitButton(
@@ -92,7 +92,7 @@ class VerifiedPage extends StatelessWidget {
                     onTap: () {},
                     isDark: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                 ],
