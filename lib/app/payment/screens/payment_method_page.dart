@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
-import 'package:shoeping/app/payment_method/widgets/payment_method_item.dart';
+import 'package:shoeping/app/payment/widgets/payment_method_item.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/widgets/header_page.dart';

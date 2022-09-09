@@ -13,4 +13,5 @@ class RouteName {
   static const checkout = 'checkout';
   static const addAddress = 'add-address';
   static const paymentMethod = 'payment-method';
+  static const verifyPin = 'verify-pin';
 }
