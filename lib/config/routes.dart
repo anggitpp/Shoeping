@@ -1,3 +1,4 @@
+import 'package:shoeping/app/home/screens/search_page/search_page.dart';
 import 'package:shoeping/app/payment/screens/payment_method_page.dart';
 
 import '../app/address/screens/add_address_page.dart';
@@ -18,7 +19,7 @@ import '../app/payment/screens/verify_pin_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const VerifyPinPage(),
+  RouteName.home: (context) => const CartPage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),
@@ -33,4 +34,5 @@ final routes = {
   RouteName.addAddress: (context) => const AddAddressPage(),
   RouteName.paymentMethod: (context) => const PaymentMethodPage(),
   RouteName.verifyPin: (context) => const VerifyPinPage(),
+  RouteName.homeSearch: (context) => const HomeSearchPage(),
 };
