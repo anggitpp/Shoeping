@@ -5,6 +5,7 @@ import '../config/theme.dart';
 
 class SubmitButtonWithIcon extends StatelessWidget {
   final double? width;
+  final double? height;
   final Color color;
   final String text;
   final Icon icon;
@@ -16,6 +17,7 @@ class SubmitButtonWithIcon extends StatelessWidget {
     required this.text,
     required this.icon,
     this.width,
+    this.height,
     this.isDark = false,
     this.onTap,
   }) : super(key: key);
@@ -24,7 +26,7 @@ class SubmitButtonWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? AppSizes.phoneWidthMargin(context) / 2,
-      height: 50,
+      height: height ?? 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,

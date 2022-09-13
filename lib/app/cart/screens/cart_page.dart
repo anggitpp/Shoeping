@@ -20,7 +20,7 @@ class CartPage extends StatelessWidget {
             Brightness.dark // Dark == white status bar -- for IOS.
         ));
 
-    final int totalCart = 0;
+    const int totalCart = 0;
     return Scaffold(
       body: SafeArea(
         child: Stack(

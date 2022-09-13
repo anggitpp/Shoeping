@@ -16,10 +16,11 @@ import '../app/detail_product/screens/detail_product_page.dart';
 import '../app/home/screens/home_page/home_page.dart';
 
 import '../app/payment/screens/verify_pin_page.dart';
+import '../app/wishlist/screens/wishlist_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const CartPage(),
+  RouteName.home: (context) => const WishlistPage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),
@@ -35,4 +36,5 @@ final routes = {
   RouteName.paymentMethod: (context) => const PaymentMethodPage(),
   RouteName.verifyPin: (context) => const VerifyPinPage(),
   RouteName.homeSearch: (context) => const HomeSearchPage(),
+  RouteName.wishlist: (context) => const WishlistPage(),
 };
