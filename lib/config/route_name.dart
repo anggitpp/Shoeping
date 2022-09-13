@@ -16,4 +16,5 @@ class RouteName {
   static const verifyPin = 'verify-pin';
   static const homeSearch = 'home-search';
   static const wishlist = 'wishlist';
+  static const notification = 'notification';
 }
