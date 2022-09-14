@@ -14,87 +14,92 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(AppSizes.defaultMargin),
-          child: Center(
-            child: Column(
-              children: [
-                Text(
-                  'Your Profile',
-                  style: extraLargeTitleText,
-                ),
-                SizedBox(height: 34),
-                SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/profile/me.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment(1, 0.9),
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: mainColor),
-                          child: Icon(
-                            Icons.edit,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
+          padding:
+              const EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 24),
+                  Text(
+                    'Your Profile',
+                    style: extraLargeTitleText,
                   ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Bimo Ability',
-                  style: veryLargeText.copyWith(fontSize: 22),
-                ),
-                SizedBox(height: 6),
-                Text('+62 812 9293 0923', style: mediumText),
-                SizedBox(height: 36),
-                DefaultDivider(),
-                SizedBox(height: 24),
-                ProfilePageItem(
-                  icon: Icons.person_outline,
-                  text: 'Edit Profile',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.mapMarkerOutline,
-                  text: 'My Address',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.walletOutline,
-                  text: 'Payment Method',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.bellOutline,
-                  text: 'Notification Settings',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.shieldOutline,
-                  text: 'Security & Privacy',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.phoneOutline,
-                  text: 'Help Center',
-                ),
-                ProfilePageItem(
-                  icon: MdiIcons.exitToApp,
-                  text: 'Log Out',
-                  color: Colors.redAccent,
-                ),
-              ],
+                  const SizedBox(height: 34),
+                  SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/profile/me.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const Alignment(1, 0.9),
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: mainColor),
+                            child: const Icon(
+                              Icons.edit,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Bimo Ability',
+                    style: veryLargeText.copyWith(fontSize: 22),
+                  ),
+                  const SizedBox(height: 6),
+                  Text('+62 812 9293 0923', style: mediumText),
+                  const SizedBox(height: 36),
+                  const DefaultDivider(),
+                  const SizedBox(height: 24),
+                  const ProfilePageItem(
+                    icon: Icons.person_outline,
+                    text: 'Edit Profile',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.mapMarkerOutline,
+                    text: 'My Address',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.walletOutline,
+                    text: 'Payment Method',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.bellOutline,
+                    text: 'Notification Settings',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.shieldOutline,
+                    text: 'Security & Privacy',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.phoneOutline,
+                    text: 'Help Center',
+                  ),
+                  const ProfilePageItem(
+                    icon: MdiIcons.exitToApp,
+                    text: 'Log Out',
+                    color: Colors.redAccent,
+                  ),
+                  const SizedBox(height: 100),
+                ],
+              ),
             ),
           ),
         ),
