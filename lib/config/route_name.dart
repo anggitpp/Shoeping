@@ -17,4 +17,5 @@ class RouteName {
   static const homeSearch = 'home-search';
   static const wishlist = 'wishlist';
   static const notification = 'notification';
+  static const profile = 'profile';
 }
