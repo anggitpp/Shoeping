@@ -1,9 +1,8 @@
-import 'package:shoeping/app/home/screens/search_page/search_page.dart';
-import 'package:shoeping/app/main/screens/main_page.dart';
-import 'package:shoeping/app/notification/screens/notification_page.dart';
-import 'package:shoeping/app/payment/screens/payment_method_page.dart';
-import 'package:shoeping/app/profile/screens/profile_page.dart';
-
+import '../app/home/screens/search_page/search_page.dart';
+import '../app/main/screens/main_page.dart';
+import '../app/notification/screens/notification_page.dart';
+import '../app/payment/screens/payment_method_page.dart';
+import '../app/profile/screens/profile_page.dart';
 import '../app/address/screens/add_address_page.dart';
 import '../app/cart/screens/cart_page.dart';
 import '../app/checkout/screens/checkout_page.dart';
@@ -17,13 +16,12 @@ import '../app/authentication/screens/login_page.dart';
 import '../app/authentication/screens/registration_page.dart';
 import '../app/detail_product/screens/detail_product_page.dart';
 import '../app/home/screens/home_page/home_page.dart';
-
 import '../app/payment/screens/verify_pin_page.dart';
 import '../app/wishlist/screens/wishlist_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const MainPage(),
+  RouteName.home: (context) => const RegistrationPage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),

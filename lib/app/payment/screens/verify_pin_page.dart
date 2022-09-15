@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoeping/app/payment/widgets/order_success_modal_bottom_sheet.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/header_page.dart';
-import 'package:shoeping/widgets/submit_button.dart';
+import 'package:shoeping/shared/widgets/header_page.dart';
+import 'package:shoeping/shared/widgets/submit_button.dart';
 
 import '../../authentication/widgets/verification_box.dart';
 

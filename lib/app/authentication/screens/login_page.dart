@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shoeping/app/authentication/widgets/authentication_text_field.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/submit_button.dart';
+import 'package:shoeping/shared/widgets/submit_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

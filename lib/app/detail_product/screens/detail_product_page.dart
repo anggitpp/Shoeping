@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 
-import '../../../widgets/default_divider.dart';
+import '../../../shared/widgets/default_divider.dart';
 
 class DetailProductPage extends StatelessWidget {
   const DetailProductPage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../config/theme.dart';
+import '../../config/theme.dart';
 
 class HeaderPage extends StatelessWidget {
   final Widget? leftWidget;

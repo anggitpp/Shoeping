@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
 
-import '../../../../widgets/product_box.dart';
+import '../../../../shared/widgets/product_box.dart';
 import 'widgets/brand_box.dart';
 import 'widgets/promo_box.dart';
 

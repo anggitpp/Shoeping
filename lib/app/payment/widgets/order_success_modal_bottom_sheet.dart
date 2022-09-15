@@ -3,8 +3,8 @@ import 'package:shoeping/app/checkout/widgets/shipping_address_box.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
-import '../../../widgets/submit_button.dart';
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/submit_button.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 
 class OrderSuccessModalBottomSheet extends StatelessWidget {
   const OrderSuccessModalBottomSheet({

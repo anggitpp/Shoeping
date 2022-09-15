@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AppSizes {
@@ -14,3 +15,5 @@ class AppSizes {
     return MediaQuery.of(context).size.height;
   }
 }
+
+final userCollection = FirebaseFirestore.instance.collection('users');

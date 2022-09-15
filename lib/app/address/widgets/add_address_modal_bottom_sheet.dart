@@ -3,8 +3,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
-import '../../../widgets/default_divider.dart';
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/default_divider.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 
 class AddAddressModalBottomSheet extends StatelessWidget {
   const AddAddressModalBottomSheet({

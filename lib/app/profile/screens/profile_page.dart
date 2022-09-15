@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/default_divider.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
 
 import '../widgets/profile_page_item.dart';
 

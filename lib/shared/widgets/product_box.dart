@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../config/theme.dart';
+import '../../config/theme.dart';
 
 class ProductBox extends StatelessWidget {
   const ProductBox({

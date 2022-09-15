@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/product_box.dart';
-import 'package:shoeping/widgets/submit_button_with_icon.dart';
+import 'package:shoeping/shared/widgets/product_box.dart';
+import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
 
 import '../widgets/cart_product_box.dart';
 import '../widgets/remove_modal_bottom_sheet.dart';

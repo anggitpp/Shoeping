@@ -3,7 +3,7 @@ import 'package:shoeping/app/checkout/widgets/shipping_address_box.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 
 class ChooseAddressModalBottomSheet extends StatelessWidget {
   const ChooseAddressModalBottomSheet({

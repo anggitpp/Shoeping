@@ -5,10 +5,10 @@ import 'package:shoeping/app/checkout/widgets/checkout_product_box.dart';
 import 'package:shoeping/app/checkout/widgets/choose_address_modal_bottom_sheet.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/default_divider.dart';
-import 'package:shoeping/widgets/header_page.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
+import 'package:shoeping/shared/widgets/header_page.dart';
 
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 import '../widgets/checkout_page_price_list_item.dart';
 
 class CheckoutPage extends StatelessWidget {

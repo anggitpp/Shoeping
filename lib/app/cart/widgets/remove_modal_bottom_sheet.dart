@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 import 'cart_product_box.dart';
 
 class RemoveModalBottomSheet extends StatelessWidget {

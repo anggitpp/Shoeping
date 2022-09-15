@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../config/constant.dart';
-import '../config/theme.dart';
+import '../../config/constant.dart';
+import '../../config/theme.dart';
 
 class SubmitButtonWithIcon extends StatelessWidget {
   final double? width;

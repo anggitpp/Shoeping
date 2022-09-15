@@ -3,10 +3,10 @@ import 'package:recase/recase.dart';
 import 'package:shoeping/app/payment/widgets/payment_method_item.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/header_page.dart';
+import 'package:shoeping/shared/widgets/header_page.dart';
 import 'package:intl/intl.dart';
 
-import '../../../widgets/submit_button_with_icon.dart';
+import '../../../shared/widgets/submit_button_with_icon.dart';
 
 class PaymentMethodPage extends StatefulWidget {
   const PaymentMethodPage({Key? key}) : super(key: key);

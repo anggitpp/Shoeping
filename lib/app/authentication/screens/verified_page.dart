@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/submit_button.dart';
+import 'package:shoeping/shared/widgets/submit_button.dart';
 
 class VerifiedPage extends StatelessWidget {
   const VerifiedPage({Key? key}) : super(key: key);

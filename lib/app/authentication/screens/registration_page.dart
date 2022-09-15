@@ -1,12 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
 import 'package:shoeping/app/authentication/widgets/authentication_text_field.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/widgets/submit_button.dart';
+import 'package:shoeping/shared/widgets/error_dialog.dart';
+import 'package:shoeping/shared/widgets/form_validator.dart';
+import 'package:shoeping/shared/widgets/submit_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _retypePasswordController = TextEditingController();
+
+  void _submit() {
+    setState(() {
+      _autovalidateMode = AutovalidateMode.always;
+    });
+
+    final form = _formKey.currentState;
+
+    if (form == null || !form.validate()) return;
+
+    form.save();
+
+    context.read<RegistrationCubit>().signUp(
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,185 +51,206 @@ class RegistrationPage extends StatelessWidget {
               Brightness.dark // Dark == white status bar -- for IOS.
           ),
     );
-    TextEditingController usernameController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController retypePasswordController = TextEditingController();
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Center(
+
+    return BlocConsumer<RegistrationCubit, RegistrationState>(
+      listener: (context, state) {
+        if (state.registrationStatus == RegistrationStatus.error) {
+          errorDialog(context, state.error);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                autovalidateMode: _autovalidateMode,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Image.asset(
-                      'assets/logo.png',
-                      width: 50,
-                      height: 50,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      'Hello Fish!',
-                      style: veryLargeText,
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      'Create your account & enjoy',
-                      style: largeText,
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: AppSizes.phoneWidth(context),
-                margin: const EdgeInsets.symmetric(
-                    horizontal: AppSizes.defaultMargin),
-                child: Column(
-                  children: [
-                    Container(
-                      width: AppSizes.phoneWidth(context),
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: darkGreyColor,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    Center(
+                      child: Column(
                         children: [
+                          const SizedBox(
+                            height: 50,
+                          ),
                           Image.asset(
-                            'assets/images/google-logo.png',
-                            width: 24,
-                            height: 24,
+                            'assets/logo.png',
+                            width: 50,
+                            height: 50,
                           ),
                           const SizedBox(
-                            width: 12,
+                            height: 16,
                           ),
                           Text(
-                            'Sign Up with Google',
-                            style:
-                                mediumLightText.copyWith(color: Colors.white),
+                            'Hello Fish!',
+                            style: veryLargeText,
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            'Create your account & enjoy',
+                            style: largeText,
+                          ),
+                          const SizedBox(
+                            height: 50,
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: AppSizes.phoneWidthMargin(context) / 2 - 24,
-                          height: 1,
-                          color: secondaryColor,
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          'OR',
-                          style: largeText,
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Container(
-                          width: AppSizes.phoneWidthMargin(context) / 2 - 24,
-                          height: 1,
-                          color: secondaryColor,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    AuthenticationTextField(
-                      hint: 'Type your username',
-                      icon: Icon(
-                        Icons.people,
-                        color: secondaryColor,
+                    Container(
+                      width: AppSizes.phoneWidth(context),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.defaultMargin),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: AppSizes.phoneWidth(context),
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: darkGreyColor,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/images/google-logo.png',
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  'Sign Up with Google',
+                                  style: mediumLightText.copyWith(
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width:
+                                    AppSizes.phoneWidthMargin(context) / 2 - 24,
+                                height: 1,
+                                color: secondaryColor,
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                'OR',
+                                style: largeText,
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Container(
+                                width:
+                                    AppSizes.phoneWidthMargin(context) / 2 - 24,
+                                height: 1,
+                                color: secondaryColor,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          AuthenticationTextField(
+                            hint: 'Type your name',
+                            icon: Icon(
+                              Icons.note_alt_outlined,
+                              color: secondaryColor,
+                            ),
+                            controller: _nameController,
+                            validator: (String? value) =>
+                                FormValidator.validateText(value, 'Name',
+                                    minLength: 2),
+                          ),
+                          AuthenticationTextField(
+                            hint: 'Type your email',
+                            icon: Icon(
+                              Icons.email_outlined,
+                              color: secondaryColor,
+                            ),
+                            controller: _emailController,
+                            validator: (String? value) =>
+                                FormValidator.validateEmail(value),
+                          ),
+                          AuthenticationTextField(
+                            isPassword: true,
+                            suffixIcon: Icon(
+                              Icons.visibility_off,
+                              color: secondaryColor,
+                            ),
+                            hint: 'Type your password',
+                            icon: Icon(
+                              Icons.lock_outline,
+                              color: secondaryColor,
+                            ),
+                            controller: _passwordController,
+                            validator: (String? value) =>
+                                FormValidator.validateText(value, 'Password',
+                                    minLength: 6),
+                          ),
+                          AuthenticationTextField(
+                            isPassword: true,
+                            suffixIcon: Icon(
+                              Icons.visibility_off,
+                              color: secondaryColor,
+                            ),
+                            hint: 'Type your confirm password',
+                            icon: Icon(
+                              Icons.lock_outline,
+                              color: secondaryColor,
+                            ),
+                            controller: _retypePasswordController,
+                            validator: (String? value) =>
+                                FormValidator.validateRetypeText(
+                                    value, _passwordController.text),
+                          ),
+                          const SizedBox(height: 30),
+                          state.registrationStatus !=
+                                  RegistrationStatus.submitting
+                              ? SubmitButton(
+                                  text: 'Sign Up',
+                                  onTap: () => _submit(),
+                                )
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                          const SizedBox(height: 25),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Already have an account? ',
+                                style: mediumLightText.copyWith(
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                'Sign In',
+                                style:
+                                    mediumLightText.copyWith(color: mainColor),
+                              )
+                            ],
+                          )
+                        ],
                       ),
-                      controller: usernameController,
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    AuthenticationTextField(
-                      hint: 'Type your phone number',
-                      icon: Icon(
-                        Icons.phone_outlined,
-                        color: secondaryColor,
-                      ),
-                      controller: phoneController,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    AuthenticationTextField(
-                      isPassword: true,
-                      suffixIcon: Icon(
-                        Icons.visibility_off,
-                        color: secondaryColor,
-                      ),
-                      hint: 'Type your password',
-                      icon: Icon(
-                        Icons.lock_outline,
-                        color: secondaryColor,
-                      ),
-                      controller: passwordController,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    AuthenticationTextField(
-                      isPassword: true,
-                      suffixIcon: Icon(
-                        Icons.visibility_off,
-                        color: secondaryColor,
-                      ),
-                      hint: 'Type your confirm password',
-                      icon: Icon(
-                        Icons.lock_outline,
-                        color: secondaryColor,
-                      ),
-                      controller: retypePasswordController,
-                    ),
-                    const SizedBox(height: 55),
-                    SubmitButton(
-                      text: 'Sign In',
-                      onTap: () {},
-                    ),
-                    const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an account? ',
-                          style: mediumLightText.copyWith(color: Colors.white),
-                        ),
-                        Text(
-                          'Sign In',
-                          style: mediumLightText.copyWith(color: mainColor),
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

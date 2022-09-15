@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shoeping/widgets/submit_button_with_icon.dart';
+import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';

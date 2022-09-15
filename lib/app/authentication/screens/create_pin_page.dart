@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../../../app/authentication/widgets/verification_box.dart';
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
-import '../../../widgets/submit_button.dart';
+import '../../../shared/widgets/submit_button.dart';
 
 class CreatePinPage extends StatelessWidget {
   const CreatePinPage({Key? key}) : super(key: key);

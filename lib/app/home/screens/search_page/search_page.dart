@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/app/home/screens/search_page/widgets/search_product_box.dart';
 import 'package:shoeping/config/constant.dart';
-import 'package:shoeping/widgets/default_divider.dart';
-import 'package:shoeping/widgets/product_box.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
+import 'package:shoeping/shared/widgets/product_box.dart';
 
 import '../../../../config/theme.dart';
 import 'widgets/search_custom_tab_bar.dart';
