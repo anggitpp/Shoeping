@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoeping/config/theme.dart';
 
-import '../../../config/constant.dart';
-
 class PaymentMethodItem extends StatelessWidget {
   final String groupValue;
   final void Function(String?)? onClickButton;
@@ -23,7 +21,7 @@ class PaymentMethodItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         tileColor: lighterBlack,
         selectedColor: mainColor,
         shape: RoundedRectangleBorder(

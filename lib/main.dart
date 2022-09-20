@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/authentication/cubits/login/login_cubit.dart';
 import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
 import '../config/routes.dart';
 import '../config/theme.dart';
@@ -31,13 +32,25 @@ class MyApp extends StatelessWidget {
               Brightness.dark // Dark == white status bar -- for IOS.
           ),
     );
-    return RepositoryProvider(
-      create: (context) => AuthRepository(
-          firebaseFirestore: FirebaseFirestore.instance,
-          firebaseAuth: FirebaseAuth.instance),
-      child: BlocProvider<RegistrationCubit>(
-        create: (context) =>
-            RegistrationCubit(authRepository: context.read<AuthRepository>()),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => AuthRepository(
+              firebaseFirestore: FirebaseFirestore.instance,
+              firebaseAuth: FirebaseAuth.instance),
+        )
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<RegistrationCubit>(
+            create: (context) => RegistrationCubit(
+                authRepository: context.read<AuthRepository>()),
+          ),
+          BlocProvider<LoginCubit>(
+            create: (context) =>
+                LoginCubit(authRepository: context.read<AuthRepository>()),
+          ),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Shoeping',

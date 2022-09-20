@@ -22,24 +22,24 @@ class VerifyPinPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeaderPage(
+                  const HeaderPage(
                     'Enter Your Pin',
                     Icon(
                       Icons.arrow_back,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Text(
                     'Enter your PIN to confirm payment',
                     style: mediumText,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: VerificationBox(4),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -60,7 +60,7 @@ class VerifyPinPage extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         context: context,
                         builder: (BuildContext context) {
-                          return OrderSuccessModalBottomSheet();
+                          return const OrderSuccessModalBottomSheet();
                         });
                   },
                 ),

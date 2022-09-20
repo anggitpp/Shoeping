@@ -83,7 +83,7 @@ class WishlistProductBox extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             children: [
               Container(
@@ -93,12 +93,12 @@ class WishlistProductBox extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   color: lighterBlack,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.delete_outline,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: SubmitButtonWithIcon(
                   color: mainColor,

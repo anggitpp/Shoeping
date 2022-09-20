@@ -1,5 +1,7 @@
 class RouteName {
-  static const home = '/';
+  static const splash = '/';
+  static const main = 'main';
+  static const home = 'home';
   static const registration = 'registration';
   static const login = 'login';
   static const verify = 'verify';

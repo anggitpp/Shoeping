@@ -24,21 +24,35 @@ class AddAddressPage extends StatelessWidget {
         position: LatLng(-6.921651290622819, 107.60614356727619),
         infoWindow: InfoWindow(title: 'Masjid Raya Bandung')));
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.terrain,
-        initialCameraPosition: kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          mapsController.complete(controller);
-        },
-        onTap: (LatLng lng) {
-          showModalBottomSheet(
-              backgroundColor: Colors.transparent,
-              context: context,
-              builder: (BuildContext context) {
-                return const AddAddressModalBottomSheet();
-              });
-        },
-        markers: Set<Marker>.of(markers),
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.terrain,
+            initialCameraPosition: kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              mapsController.complete(controller);
+            },
+            onTap: (LatLng lng) {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const AddAddressModalBottomSheet();
+                  });
+            },
+            markers: Set<Marker>.of(markers),
+          ),
+          Align(
+            alignment: const Alignment(-0.8, -0.85),
+            child: InkWell(
+              onTap: () => Navigator.pop(context),
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:shoeping/app/splash/screens/splash_page.dart';
+
 import '../app/home/screens/search_page/search_page.dart';
 import '../app/main/screens/main_page.dart';
 import '../app/notification/screens/notification_page.dart';
@@ -21,7 +23,9 @@ import '../app/wishlist/screens/wishlist_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.home: (context) => const RegistrationPage(),
+  RouteName.splash: (context) => const SplashPage(),
+  RouteName.main: (context) => const MainPage(),
+  RouteName.home: (context) => const HomePage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),

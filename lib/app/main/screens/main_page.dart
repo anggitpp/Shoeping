@@ -40,12 +40,10 @@ class _MainPageState extends State<MainPage> {
           Align(
             alignment: const Alignment(0, 1),
             child: Container(
-              // padding: EdgeInsets.all(24),
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               width: AppSizes.phoneWidth(context),
               height: 100,
               decoration: BoxDecoration(
-                // borderRadius: BorderRadius.circular(12),
                 color: lighterBlack,
               ),
               child: Row(

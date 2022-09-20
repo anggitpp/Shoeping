@@ -31,9 +31,9 @@ class ProfilePageItem extends StatelessWidget {
               color: color,
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Text(text, style: extraLargeText.copyWith(color: color)),
-          Spacer(),
+          const Spacer(),
           InkWell(
               onTap: onTap,
               child: Icon(Icons.chevron_right_outlined, color: color)),

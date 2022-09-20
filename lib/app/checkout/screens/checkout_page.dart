@@ -4,6 +4,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:shoeping/app/checkout/widgets/checkout_product_box.dart';
 import 'package:shoeping/app/checkout/widgets/choose_address_modal_bottom_sheet.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/widgets/default_divider.dart';
 import 'package:shoeping/shared/widgets/header_page.dart';
@@ -84,11 +85,12 @@ class CheckoutPage extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               showModalBottomSheet(
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: ((context) {
-                                    return const ChooseAddressModalBottomSheet();
-                                  }));
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: ((context) {
+                                  return const ChooseAddressModalBottomSheet();
+                                }),
+                              );
                             },
                             child: const Icon(
                               MdiIcons.pencil,
@@ -210,6 +212,8 @@ class CheckoutPage extends StatelessWidget {
                     Icons.arrow_forward,
                     color: backgroundColor,
                   ),
+                  onTap: () =>
+                      Navigator.pushNamed(context, RouteName.paymentMethod),
                 ),
               ),
             ),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 import 'package:shoeping/app/payment/widgets/payment_method_item.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/widgets/header_page.dart';
-import 'package:intl/intl.dart';
 
 import '../../../shared/widgets/submit_button_with_icon.dart';
 
@@ -35,7 +35,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
             unselectedWidgetColor: mainColor,
           ),
           child: Padding(
-            padding: EdgeInsets.all(AppSizes.defaultMargin),
+            padding: const EdgeInsets.all(AppSizes.defaultMargin),
             child: Stack(
               children: [
                 Column(
@@ -43,23 +43,26 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                   children: [
                     HeaderPage(
                       'Payment Methods',
-                      Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
                       ),
-                      rightWidget: Icon(
+                      rightWidget: const Icon(
                         Icons.add,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     Text(
                       'Select the payment method you want to use',
                       style: mediumText,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Column(
@@ -88,6 +91,8 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                       Icons.arrow_forward,
                       color: backgroundColor,
                     ),
+                    onTap: () =>
+                        Navigator.pushNamed(context, RouteName.verifyPin),
                   ),
                 ),
               ],

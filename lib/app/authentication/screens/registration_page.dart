@@ -222,7 +222,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   text: 'Sign Up',
                                   onTap: () => _submit(),
                                 )
-                              : Center(
+                              : const Center(
                                   child: CircularProgressIndicator(),
                                 ),
                           const SizedBox(height: 25),

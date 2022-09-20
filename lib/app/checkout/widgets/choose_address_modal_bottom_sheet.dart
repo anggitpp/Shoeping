@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoeping/app/checkout/widgets/shipping_address_box.dart';
+import 'package:shoeping/config/route_name.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
@@ -68,6 +69,7 @@ class ChooseAddressModalBottomSheet extends StatelessWidget {
             text: 'Add Address',
             icon: const Icon(Icons.add),
             isDark: true,
+            onTap: () => Navigator.pushNamed(context, RouteName.addAddress),
           ),
         ],
       ),

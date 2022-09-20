@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoeping/app/wishlist/widgets/wishlist_product_box.dart';
+import 'package:shoeping/config/route_name.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
@@ -53,18 +54,22 @@ class WishlistPage extends StatelessWidget {
                         const SizedBox(
                           width: 16,
                         ),
-                        const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.white,
+                        GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(context, RouteName.cart),
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 27),
+                    const SizedBox(height: 27),
                     Text('Your Wishlist Product', style: largeMediumText),
-                    SizedBox(height: 16),
-                    WishlistProductBox(),
-                    SizedBox(height: 12),
-                    WishlistProductBox(),
+                    const SizedBox(height: 16),
+                    const WishlistProductBox(),
+                    const SizedBox(height: 12),
+                    const WishlistProductBox(),
                   ],
                 ),
               ),

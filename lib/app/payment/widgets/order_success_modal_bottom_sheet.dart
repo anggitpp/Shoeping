@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shoeping/app/checkout/widgets/shipping_address_box.dart';
+import 'package:shoeping/config/route_name.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
 import '../../../shared/widgets/submit_button.dart';
-import '../../../shared/widgets/submit_button_with_icon.dart';
 
 class OrderSuccessModalBottomSheet extends StatelessWidget {
   const OrderSuccessModalBottomSheet({
@@ -42,27 +41,28 @@ class OrderSuccessModalBottomSheet extends StatelessWidget {
               size: 64,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 36,
           ),
           Text(
             'Order Successful',
             style: veryLargeText.copyWith(fontSize: 22),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'You have successfuly made order',
             style: mediumText,
           ),
-          SizedBox(height: 36),
+          const SizedBox(height: 36),
           SubmitButton(
             text: 'View Order',
             onTap: () {},
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           SubmitButton(
             text: 'Back to Home',
-            onTap: () {},
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, RouteName.main),
             isDark: true,
           ),
         ],

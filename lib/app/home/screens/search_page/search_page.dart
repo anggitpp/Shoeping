@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/app/home/screens/search_page/widgets/search_product_box.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_divider.dart';
 import 'package:shoeping/shared/widgets/product_box.dart';
 
@@ -29,21 +29,24 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.defaultMargin),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                         ),
-                        SizedBox(width: 16),
+                        const SizedBox(width: 16),
                         SizedBox(
                           width: AppSizes.phoneWidthMargin(context) -
                               60 -
@@ -56,6 +59,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                 searchString = value;
                               });
                             },
+                            style: mediumText.copyWith(color: Colors.white),
                             decoration: InputDecoration(
                               fillColor: lighterBlack,
                               prefixIcon: Icon(
@@ -73,10 +77,14 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 16),
-                        Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.white,
+                        const SizedBox(width: 16),
+                        GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(context, RouteName.cart),
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
@@ -87,11 +95,11 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                   ? Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: AppSizes.defaultMargin),
                           child: Column(
                             children: [
-                              SizedBox(height: 36),
+                              const SizedBox(height: 36),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -106,7 +114,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                             ],
                           ),
                         ),
@@ -124,15 +132,15 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                       right: index == 9
                                           ? AppSizes.defaultMargin
                                           : 0),
-                                  child: ProductBox(),
+                                  child: const ProductBox(),
                                 );
                               }),
                         ),
-                        SizedBox(height: 24),
-                        DefaultDivider(),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
+                        const DefaultDivider(),
+                        const SizedBox(height: 24),
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: AppSizes.defaultMargin),
                           child: Column(
                             children: [
@@ -150,10 +158,10 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 20),
-                              SearchRecentItem(title: 'Sepatu Kuda'),
-                              SizedBox(height: 8),
-                              SearchRecentItem(title: 'Nike Jordan'),
+                              const SizedBox(height: 20),
+                              const SearchRecentItem(title: 'Sepatu Kuda'),
+                              const SizedBox(height: 8),
+                              const SearchRecentItem(title: 'Nike Jordan'),
                             ],
                           ),
                         ),
@@ -161,7 +169,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                     )
                   : Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 60,
                         ),
                         Row(
@@ -178,9 +186,9 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                   ),
                                 )
                                 .toList()),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
                         Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: AppSizes.defaultMargin),
                           child: Column(
                             children: [
@@ -202,7 +210,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                               selectedTab == 'Store'
                                   ? Column(
                                       children: [
-                                        SizedBox(height: 24),
+                                        const SizedBox(height: 24),
                                         Row(
                                           children: [
                                             Container(
@@ -227,11 +235,11 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                         ),
                                       ],
                                     )
-                                  : SizedBox(),
-                              SizedBox(height: 24),
-                              SearchProductBox(),
-                              SizedBox(height: 12),
-                              SearchProductBox(),
+                                  : const SizedBox(),
+                              const SizedBox(height: 24),
+                              const SearchProductBox(),
+                              const SizedBox(height: 12),
+                              const SearchProductBox(),
                             ],
                           ),
                         ),

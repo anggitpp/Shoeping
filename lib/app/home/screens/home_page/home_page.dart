@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 
 import '../../../../shared/widgets/product_box.dart';
@@ -40,20 +41,25 @@ class HomePage extends StatelessWidget {
                               16 -
                               AppSizes.defaultMargin,
                           height: 48,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              fillColor: lighterBlack,
-                              prefixIcon: Icon(
-                                Icons.search_outlined,
-                                color: secondaryColor,
-                              ),
-                              hintText: 'Search any product',
-                              hintStyle: mediumText,
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                borderSide:
-                                    const BorderSide(color: Colors.transparent),
+                          child: GestureDetector(
+                            onTap: () => Navigator.pushNamed(
+                                context, RouteName.homeSearch),
+                            child: TextField(
+                              enabled: false,
+                              decoration: InputDecoration(
+                                fillColor: lighterBlack,
+                                prefixIcon: Icon(
+                                  Icons.search_outlined,
+                                  color: secondaryColor,
+                                ),
+                                hintText: 'Search any product',
+                                hintStyle: mediumText,
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                  borderSide: const BorderSide(
+                                      color: Colors.transparent),
+                                ),
                               ),
                             ),
                           ),
@@ -61,9 +67,13 @@ class HomePage extends StatelessWidget {
                         const SizedBox(
                           width: 16,
                         ),
-                        const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.white,
+                        InkWell(
+                          onTap: () =>
+                              Navigator.pushNamed(context, RouteName.cart),
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
@@ -169,13 +179,16 @@ class HomePage extends StatelessWidget {
                       runSpacing: 20,
                       children: List.generate(
                         4,
-                        (index) => const ProductBox(),
+                        (index) => GestureDetector(
+                            onTap: () => Navigator.pushNamed(
+                                context, RouteName.detailProduct),
+                            child: const ProductBox()),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
             ],
           ),
         ),

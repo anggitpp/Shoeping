@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 
 import '../../../shared/widgets/default_divider.dart';
@@ -41,17 +42,24 @@ class DetailProductPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: const Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
                             ),
                             Text(
                               'Detail Product',
                               style: extraLargeText,
                             ),
-                            const Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.white,
+                            GestureDetector(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, RouteName.cart),
+                              child: const Icon(
+                                Icons.shopping_cart_outlined,
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         ),

@@ -17,16 +17,17 @@ class NotificationWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
+            padding:
+                const EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
             child: Text(
               'Today',
               style: largeMediumText,
             ),
           ),
-          SizedBox(height: 16),
-          NotificationItem(),
-          NotificationItem(),
-          SizedBox(height: 8),
+          const SizedBox(height: 16),
+          const NotificationItem(),
+          const NotificationItem(),
+          const SizedBox(height: 8),
         ],
       ),
     );

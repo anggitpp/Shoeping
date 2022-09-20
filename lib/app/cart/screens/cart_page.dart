@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/widgets/product_box.dart';
 import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
@@ -20,7 +21,7 @@ class CartPage extends StatelessWidget {
             Brightness.dark // Dark == white status bar -- for IOS.
         ));
 
-    const int totalCart = 0;
+    const int totalCart = 2;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -34,9 +35,12 @@ class CartPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                         ),
                         Text(
                           'My Carts',
@@ -108,12 +112,12 @@ class CartPage extends StatelessWidget {
                                   'Oops! Your cart is empty',
                                   style: largeMediumText,
                                 ),
-                                SizedBox(height: 6),
+                                const SizedBox(height: 6),
                                 Text(
                                   'Lets find something for you',
                                   style: smallText,
                                 ),
-                                SizedBox(height: 24),
+                                const SizedBox(height: 24),
                                 Text(
                                   'Explore Product',
                                   style: mediumText.copyWith(color: mainColor),
@@ -121,12 +125,12 @@ class CartPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Text(
                       'Recommended From Nike',
                       style: largeMediumText,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     SizedBox(
                       width: AppSizes.phoneWidthMargin(context),
                       child: Wrap(
@@ -134,10 +138,11 @@ class CartPage extends StatelessWidget {
                         alignment: WrapAlignment.spaceBetween,
                         runAlignment: WrapAlignment.spaceBetween,
                         children:
-                            List.generate(4, (index) => ProductBox()).toList(),
+                            List.generate(4, (index) => const ProductBox())
+                                .toList(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 100,
                     ),
                   ],
@@ -179,12 +184,15 @@ class CartPage extends StatelessWidget {
                       ],
                     ),
                     SubmitButtonWithIcon(
-                        color: totalCart > 0 ? mainColor : secondaryColor,
-                        text: 'Checkout',
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          color: backgroundColor,
-                        ))
+                      color: totalCart > 0 ? mainColor : secondaryColor,
+                      text: 'Checkout',
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: backgroundColor,
+                      ),
+                      onTap: () =>
+                          Navigator.pushNamed(context, RouteName.checkout),
+                    )
                   ],
                 ),
               ),

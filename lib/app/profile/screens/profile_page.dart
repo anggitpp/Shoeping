@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Text(
                     'Your Profile',
                     style: extraLargeTitleText,

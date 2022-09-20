@@ -5,15 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void errorDialog(BuildContext context, CustomError e) {
-  print('code: ${e.code}\nmessage: ${e.message}\nplugin: ${e.plugin}\n');
-
   if (Platform.isIOS) {
     showCupertinoDialog(
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(e.code),
-          content: Text(e.plugin + '\n' + e.message),
+          content: Text('${e.plugin}\n${e.message}'),
           actions: [
             CupertinoDialogAction(
               child: const Text('OK'),
@@ -29,7 +27,7 @@ void errorDialog(BuildContext context, CustomError e) {
         builder: (context) {
           return AlertDialog(
             title: Text(e.code),
-            content: Text(e.plugin + '\n' + e.message),
+            content: Text('${e.plugin}\n${e.message}'),
             actions: [
               TextButton(
                   onPressed: () => Navigator.pop(context),

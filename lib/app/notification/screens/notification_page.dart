@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/app/notification/widgets/notification_widget.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/theme.dart';
@@ -22,7 +20,7 @@ class _NotificationPageState extends State<NotificationPage> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 27,
             ),
             Padding(
@@ -34,17 +32,17 @@ class _NotificationPageState extends State<NotificationPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Notification', style: largeMediumText),
-                      Icon(Icons.settings_outlined, color: Colors.white),
+                      const Icon(Icons.settings_outlined, color: Colors.white),
                     ],
                   ),
-                  SizedBox(height: 24),
-                  DefaultDivider(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
+                  const DefaultDivider(),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
-            NotificationWidget(),
-            NotificationWidget(),
+            const NotificationWidget(),
+            const NotificationWidget(),
           ],
         ),
       ),
