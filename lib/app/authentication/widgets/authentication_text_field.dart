@@ -7,21 +7,25 @@ class AuthenticationTextField extends StatelessWidget {
   final Icon icon;
   final TextEditingController controller;
   final bool isPassword;
-  final Icon? suffixIcon;
+  final bool isVisible;
+  final IconData? suffixIcon;
   final TextInputType? textInputType;
   final String? Function(String?)? validator;
-  // final Function(String?)? onSaved;
-  const AuthenticationTextField({
-    Key? key,
-    required this.hint,
-    required this.icon,
-    required this.controller,
-    this.isPassword = false,
-    this.suffixIcon,
-    this.textInputType = TextInputType.text,
-    this.validator,
-    // this.onSaved,
-  }) : super(key: key);
+  final Function()? onTapSuffixIcon;
+  const AuthenticationTextField(
+      {Key? key,
+      required this.hint,
+      required this.icon,
+      required this.controller,
+      this.isPassword = false,
+      this.isVisible = true,
+      this.suffixIcon,
+      this.textInputType = TextInputType.text,
+      this.validator,
+      this.onTapSuffixIcon
+      // this.onSaved,
+      })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +36,20 @@ class AuthenticationTextField extends StatelessWidget {
         autocorrect: false,
         keyboardType: textInputType,
         style: mediumText.copyWith(color: Colors.white),
-        obscureText: isPassword ? true : false,
+        obscureText: isVisible ? false : true,
         validator: validator,
         decoration: InputDecoration(
           prefixIcon: icon,
-          suffixIcon: isPassword ? suffixIcon : null,
+          suffixIcon: isPassword
+              ? IconButton(
+                  splashColor: Colors.transparent,
+                  onPressed: onTapSuffixIcon,
+                  icon: Icon(
+                    suffixIcon,
+                    color: secondaryColor,
+                  ),
+                )
+              : null,
           hintText: hint,
           hintStyle: mediumLightText,
           enabledBorder: UnderlineInputBorder(

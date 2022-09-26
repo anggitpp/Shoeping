@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/authentication/widgets/authentication_text_field.dart';
 import 'package:shoeping/config/constant.dart';
@@ -23,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
+  bool isVisible = false;
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -43,12 +44,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white, // Color for Android
-        statusBarBrightness:
-            Brightness.dark // Dark == white status bar -- for IOS.
-        ));
-
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.loginStatus == LoginStatus.error) {
@@ -179,10 +174,17 @@ class _LoginPageState extends State<LoginPage> {
                           AuthenticationTextField(
                             controller: _passwordController,
                             isPassword: true,
-                            suffixIcon: Icon(
-                              Icons.visibility_off,
-                              color: secondaryColor,
-                            ),
+                            isVisible: isVisible,
+                            suffixIcon: isVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            onTapSuffixIcon: () {
+                              setState(() {
+                                isVisible = !isVisible;
+
+                                print('test');
+                              });
+                            },
                             hint: 'Type your password',
                             icon: Icon(
                               Icons.lock_outline,

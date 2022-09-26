@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: Colors.white, // Color for Android
+          statusBarColor: backgroundColor, // Color for Android
+          statusBarIconBrightness: Brightness.light, // For Android (dark icons)
           statusBarBrightness:
               Brightness.dark // Dark == white status bar -- for IOS.
           ),

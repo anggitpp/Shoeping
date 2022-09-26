@@ -185,10 +185,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           AuthenticationTextField(
                             isPassword: true,
-                            suffixIcon: Icon(
-                              Icons.visibility_off,
-                              color: secondaryColor,
-                            ),
+                            suffixIcon: Icons.visibility_off,
                             hint: 'Type your password',
                             icon: Icon(
                               Icons.lock_outline,
@@ -201,10 +198,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           AuthenticationTextField(
                             isPassword: true,
-                            suffixIcon: Icon(
-                              Icons.visibility_off,
-                              color: secondaryColor,
-                            ),
+                            suffixIcon: Icons.visibility_off,
                             hint: 'Type your confirm password',
                             icon: Icon(
                               Icons.lock_outline,
