@@ -181,8 +181,6 @@ class _LoginPageState extends State<LoginPage> {
                             onTapSuffixIcon: () {
                               setState(() {
                                 isVisible = !isVisible;
-
-                                print('test');
                               });
                             },
                             hint: 'Type your password',
@@ -221,10 +219,14 @@ class _LoginPageState extends State<LoginPage> {
                                 style: mediumLightText.copyWith(
                                     color: Colors.white),
                               ),
-                              Text(
-                                'Sign Up',
-                                style:
-                                    mediumLightText.copyWith(color: mainColor),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(
+                                    context, RouteName.registration),
+                                child: Text(
+                                  'Sign Up',
+                                  style: mediumLightText.copyWith(
+                                      color: mainColor),
+                                ),
                               )
                             ],
                           )

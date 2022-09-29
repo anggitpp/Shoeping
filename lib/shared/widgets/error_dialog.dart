@@ -5,13 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void errorDialog(BuildContext context, CustomError e) {
+  Map<String, String> errors = {
+    '500': 'Internal server error',
+    '404': 'Not found',
+  };
   if (Platform.isIOS) {
     showCupertinoDialog(
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
-          title: Text(e.code),
-          content: Text('${e.plugin}\n${e.message}'),
+          title: Text(errors[e.code] ?? 'Error'),
+          content: Text(e.message),
           actions: [
             CupertinoDialogAction(
               child: const Text('OK'),
@@ -26,8 +30,8 @@ void errorDialog(BuildContext context, CustomError e) {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(e.code),
-            content: Text('${e.plugin}\n${e.message}'),
+            title: Text(errors[e.code] ?? 'Error'),
+            content: Text(e.message),
             actions: [
               TextButton(
                   onPressed: () => Navigator.pop(context),

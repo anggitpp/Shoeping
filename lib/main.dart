@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/authentication/cubits/login/login_cubit.dart';
 import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
+import 'package:shoeping/config/route_name.dart';
 import '../config/routes.dart';
 import '../config/theme.dart';
 import 'package:firebase_core/firebase_core.dart';

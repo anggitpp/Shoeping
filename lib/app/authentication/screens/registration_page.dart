@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
 import 'package:shoeping/app/authentication/widgets/authentication_text_field.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/widgets/error_dialog.dart';
 import 'package:shoeping/shared/widgets/form_validator.dart';
@@ -25,6 +25,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _passwordController = TextEditingController();
   final _retypePasswordController = TextEditingController();
 
+  bool isVisiblePassword = false;
+  bool isVisibleRetypePassword = false;
+
   void _submit() {
     setState(() {
       _autovalidateMode = AutovalidateMode.always;
@@ -44,18 +47,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: Colors.white, // Color for Android
-          statusBarBrightness:
-              Brightness.dark // Dark == white status bar -- for IOS.
-          ),
-    );
-
     return BlocConsumer<RegistrationCubit, RegistrationState>(
       listener: (context, state) {
         if (state.registrationStatus == RegistrationStatus.error) {
           errorDialog(context, state.error);
+        }
+
+        if (state.registrationStatus == RegistrationStatus.success) {
+          Navigator.pushReplacementNamed(context, RouteName.main);
         }
       },
       builder: (context, state) {
@@ -186,7 +185,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           AuthenticationTextField(
                             isPassword: true,
                             suffixIcon: Icons.visibility_off,
+                            isVisible: isVisiblePassword,
                             hint: 'Type your password',
+                            onTapSuffixIcon: () {
+                              setState(() {
+                                isVisiblePassword = !isVisiblePassword;
+                              });
+                            },
                             icon: Icon(
                               Icons.lock_outline,
                               color: secondaryColor,
@@ -200,6 +205,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             isPassword: true,
                             suffixIcon: Icons.visibility_off,
                             hint: 'Type your confirm password',
+                            isVisible: isVisibleRetypePassword,
+                            onTapSuffixIcon: () {
+                              setState(() {
+                                isVisibleRetypePassword =
+                                    !isVisibleRetypePassword;
+                              });
+                            },
                             icon: Icon(
                               Icons.lock_outline,
                               color: secondaryColor,

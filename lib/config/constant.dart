@@ -17,3 +17,4 @@ class AppSizes {
 }
 
 final userCollection = FirebaseFirestore.instance.collection('users');
+const apiURL = 'https://shoeping.buildwithapp.net/api';

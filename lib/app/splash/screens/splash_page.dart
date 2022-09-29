@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shoeping/config/theme.dart';
 
@@ -17,8 +18,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 2),
-        () => Navigator.pushReplacementNamed(context, RouteName.login));
+    Timer(const Duration(seconds: 2), () {
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        Navigator.pushReplacementNamed(
+            context, user == null ? RouteName.login : RouteName.main);
+      });
+    });
   }
 
   @override

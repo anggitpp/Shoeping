@@ -19,25 +19,26 @@ class ProfilePageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: lighterBlack),
-            child: Icon(
-              icon,
-              color: color,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: lighterBlack),
+              child: Icon(
+                icon,
+                color: color,
+              ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Text(text, style: extraLargeText.copyWith(color: color)),
-          const Spacer(),
-          InkWell(
-              onTap: onTap,
-              child: Icon(Icons.chevron_right_outlined, color: color)),
-        ],
+            const SizedBox(width: 12),
+            Text(text, style: extraLargeText.copyWith(color: color)),
+            const Spacer(),
+            Icon(Icons.chevron_right_outlined, color: color),
+          ],
+        ),
       ),
     );
   }

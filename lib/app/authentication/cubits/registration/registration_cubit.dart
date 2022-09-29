@@ -21,7 +21,7 @@ class RegistrationCubit extends Cubit<RegistrationState> {
     try {
       await authRepository.signUp(name: name, email: email, password: password);
 
-      state.copyWith(registrationStatus: RegistrationStatus.success);
+      emit(state.copyWith(registrationStatus: RegistrationStatus.success));
     } on CustomError catch (e) {
       emit(state.copyWith(
           registrationStatus: RegistrationStatus.error, error: e));
