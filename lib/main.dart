@@ -5,11 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/authentication/cubits/login/login_cubit.dart';
 import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
-import 'package:shoeping/config/route_name.dart';
+import 'package:shoeping/app/home/repositories/home_repository.dart';
 import '../config/routes.dart';
 import '../config/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app/authentication/repositories/auth_repository.dart';
+import 'app/home/cubit/home_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthRepository(
               firebaseFirestore: FirebaseFirestore.instance,
               firebaseAuth: FirebaseAuth.instance),
-        )
+        ),
+        RepositoryProvider(create: ((context) => HomeRepository()))
       ],
       child: MultiBlocProvider(
         providers: [
@@ -52,6 +54,9 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 LoginCubit(authRepository: context.read<AuthRepository>()),
           ),
+          BlocProvider<HomeCubit>(
+              create: (context) =>
+                  HomeCubit(homeRepository: context.read<HomeRepository>()))
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

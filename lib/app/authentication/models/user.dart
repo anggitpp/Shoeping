@@ -29,24 +29,12 @@ class UserModel {
     return 'UserModel(id: $id, name: $name, email: $email)';
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'email': email,
-    };
-  }
-
-  factory UserModel.fromMap(Map<String, dynamic> map) {
+  //fromJson
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: map['id']?.toInt() ?? 0,
-      name: map['name'] ?? '',
-      email: map['email'] ?? '',
+      id: json['id']?.toInt() ?? '',
+      name: json['name'] ?? '',
+      email: json['email'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source));
 }

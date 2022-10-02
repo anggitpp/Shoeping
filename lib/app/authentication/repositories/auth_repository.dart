@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/shared/models/custom_error.dart';
@@ -57,41 +58,23 @@ class AuthRepository {
     }
   }
 
-  // Future<UserModel?> getUser({required String email}) async {
-  //   try {
-  //     var response = await Dio().get('$apiURL/user', queryParameters: {
-  //       'email': email,
-  //     });
-
-  //     return UserModel.fromJson(response.data['data']);
-  //   } on DioError catch (e) {
-  //     if (e.response!.statusCode == 404) {
-  //       print(e.response!.statusCode);
-  //       print(e.response!.data);
-  //     } else {
-  //       print(e.message);
-  //     }
-
-  //     throw CustomError(
-  //         code: e.response!.statusCode.toString(),
-  //         message: e.response!.statusMessage!,
-  //         plugin: 'error dio');
-  //   } catch (e) {
-  //     throw CustomError(
-  //         code: 'Exception',
-  //         message: e.toString(),
-  //         plugin: 'flutter_error/server_error');
-  //   }
-
-  // }
-
-  // return null;
-  // }
-
   Future<void> signIn({required String email, required String password}) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+
+      //login backend to get access token
+      var response = await _dio.post(
+        '$apiURL/login',
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+      final prefs = await SharedPreferences.getInstance();
+
+      //set token to shared preferences
+      await prefs.setString('token', response.data['access_token']);
     } on FirebaseAuthException catch (e) {
       String code = e.code;
       String message = CustomErrorMessage().firebaseErrorMessage(code);
@@ -106,9 +89,7 @@ class AuthRepository {
 
   Future<void> signOut() async {
     try {
-      print('signing out repo');
       await FirebaseAuth.instance.signOut();
-      print('signed out repo');
     } on FirebaseAuthException catch (e) {
       String code = e.code;
       String message = CustomErrorMessage().firebaseErrorMessage(code);

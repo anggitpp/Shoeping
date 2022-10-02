@@ -6,6 +6,7 @@ import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/widgets/default_divider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widgets/profile_data.dart';
 import '../widgets/profile_page_item.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -23,51 +24,7 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 24),
-                  Text(
-                    'Your Profile',
-                    style: extraLargeTitleText,
-                  ),
-                  const SizedBox(height: 34),
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/profile/me.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const Alignment(1, 0.9),
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: mainColor),
-                            child: const Icon(
-                              Icons.edit,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Bimo Ability',
-                    style: veryLargeText.copyWith(fontSize: 22),
-                  ),
-                  const SizedBox(height: 6),
-                  Text('+62 812 9293 0923', style: mediumText),
-                  const SizedBox(height: 36),
+                  const ProfileDataWidget(),
                   const DefaultDivider(),
                   const SizedBox(height: 24),
                   const ProfilePageItem(

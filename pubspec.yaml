@@ -44,6 +44,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6996
   pin_code_fields: ^7.4.0
   recase: ^4.0.0
+  shared_preferences: ^2.0.15
   supercharged: ^2.1.1
   validators: ^3.0.0
 

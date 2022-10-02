@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 
 import '../../../../shared/widgets/product_box.dart';
+import '../../cubit/home_cubit.dart';
 import 'widgets/brand_box.dart';
+import 'widgets/most_popular.dart';
 import 'widgets/promo_box.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<HomeCubit>().getUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white, // Color for Android
-        statusBarBrightness:
-            Brightness.dark // Dark == white status bar -- for IOS.
-        ));
     final List<String> brands = ['Adidas', 'Puma', 'Nike', 'Reebok'];
     return Scaffold(
       body: SafeArea(
@@ -174,17 +182,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    Wrap(
-                      spacing: 20,
-                      runSpacing: 20,
-                      children: List.generate(
-                        4,
-                        (index) => GestureDetector(
-                            onTap: () => Navigator.pushNamed(
-                                context, RouteName.detailProduct),
-                            child: const ProductBox()),
-                      ),
-                    ),
+                    const HomeMostPopularWidget(),
                   ],
                 ),
               ),
