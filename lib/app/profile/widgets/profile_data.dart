@@ -63,7 +63,7 @@ class ProfileDataWidget extends StatelessWidget {
                   const SizedBox(height: 36),
                 ],
               )
-            : SizedBox(
+            : const SizedBox(
                 width: 200,
                 height: 200,
                 child: Center(

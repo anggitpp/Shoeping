@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../config/constant.dart';
 import '../../config/theme.dart';
+import '../models/product.dart';
 
 class ProductBox extends StatelessWidget {
-  const ProductBox({
+  final Product product;
+  const ProductBox(
+    this.product, {
     Key? key,
   }) : super(key: key);
 
@@ -24,13 +28,16 @@ class ProductBox extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               color: lighterBlack,
             ),
-            child: Image.asset('assets/images/sepatu/sepatu-1.png'),
+            child: Image.network(
+              imageAPIURL + product.image,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(
             height: 8,
           ),
           Text(
-            'Air Zoom SuperRep',
+            product.name,
             style: largeText.copyWith(
                 color: Colors.white, fontWeight: FontWeight.w500),
           ),
@@ -40,7 +47,7 @@ class ProductBox extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Nike ·',
+                '${product.brandName} ·',
                 style: mediumMediumText,
               ),
               const SizedBox(
@@ -67,7 +74,7 @@ class ProductBox extends StatelessWidget {
           Text(
             NumberFormat.currency(
                     locale: 'id_ID', symbol: 'IDR ', decimalDigits: 0)
-                .format(1799000),
+                .format(product.price),
             style: mediumMediumText.copyWith(color: Colors.white),
           )
         ],

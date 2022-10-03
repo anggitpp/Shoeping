@@ -4,7 +4,6 @@ import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 
-import '../../../../shared/widgets/product_box.dart';
 import '../../cubit/home_cubit.dart';
 import 'widgets/brand_box.dart';
 import 'widgets/most_popular.dart';
@@ -186,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 150),
             ],
           ),
         ),

@@ -1,8 +1,11 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shoeping/app/authentication/models/user.dart';
 import 'package:shoeping/app/home/repositories/home_repository.dart';
+import 'package:shoeping/shared/models/custom_error.dart';
+
+import '../../../shared/models/product.dart';
 
 part 'home_state.dart';
 
@@ -15,15 +18,28 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getUser() async {
     emit(state.copyWith(userStatus: UserStatus.loading));
     try {
-      print('test');
       final UserModel userModel = await homeRepository.getUser();
-      print('test berhasil');
-      print(userModel);
       emit(
           state.copyWith(userStatus: UserStatus.success, userModel: userModel));
-    } catch (e) {
-      print(e);
-      emit(state.copyWith(userStatus: UserStatus.error));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+        userStatus: UserStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> getProducts() async {
+    emit(state.copyWith(productStatus: ProductStatus.loading));
+    try {
+      final List<Product> products = await homeRepository.getProducts();
+      emit(state.copyWith(
+          productStatus: ProductStatus.success, products: products));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+        productStatus: ProductStatus.error,
+        error: e,
+      ));
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:shoeping/app/authentication/models/user.dart';
 import 'package:shoeping/config/constant.dart';
 
 import '../../../shared/models/custom_error.dart';
+import '../../../shared/models/product.dart';
 
 class HomeRepository {
   final Dio _dio = Dio();
@@ -13,16 +14,40 @@ class HomeRepository {
     try {
       String email = FirebaseAuth.instance.currentUser!.email!;
 
-      //get token from shared preferences token
-      final SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      final String token = sharedPreferences.getString('token')!;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? '';
 
       var response = await _dio.get('$apiURL/user',
           queryParameters: {'email': email},
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
       return UserModel.fromJson(response.data['data']);
+    } on DioError catch (e) {
+      throw CustomError(
+          code: e.response!.statusCode.toString(),
+          message: e.response!.data!['error'],
+          plugin: 'server error');
+    } catch (e) {
+      throw CustomError(
+          code: 'Exception',
+          message: e.toString(),
+          plugin: 'flutter_error/server_error');
+    }
+  }
+
+  Future<List<Product>> getProducts() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? '';
+      var response = await _dio.get('$apiURL/products',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+
+      List<Product> products = [];
+      for (var product in response.data['data']) {
+        products.add(Product.fromJson(product));
+      }
+
+      return products;
     } on DioError catch (e) {
       throw CustomError(
           code: e.response!.statusCode.toString(),

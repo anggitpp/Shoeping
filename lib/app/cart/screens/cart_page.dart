@@ -137,9 +137,9 @@ class CartPage extends StatelessWidget {
                         runSpacing: 20,
                         alignment: WrapAlignment.spaceBetween,
                         runAlignment: WrapAlignment.spaceBetween,
-                        children:
-                            List.generate(4, (index) => const ProductBox())
-                                .toList(),
+                        // children:
+                        // List.generate(4, (index) => const ProductBox())
+                        // .toList(),
                       ),
                     ),
                     const SizedBox(

@@ -132,7 +132,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                       right: index == 9
                                           ? AppSizes.defaultMargin
                                           : 0),
-                                  child: const ProductBox(),
+                                  // child: const ProductBox(),
                                 );
                               }),
                         ),
