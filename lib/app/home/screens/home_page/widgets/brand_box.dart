@@ -24,7 +24,7 @@ class BrandBox extends StatelessWidget {
             color: lighterBlack,
           ),
           alignment: Alignment.center,
-          child: Image.asset(
+          child: Image.network(
             image,
           ),
         ),

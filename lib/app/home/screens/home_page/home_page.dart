@@ -5,7 +5,7 @@ import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
 
 import '../../cubit/home_cubit.dart';
-import 'widgets/brand_box.dart';
+import 'widgets/brand_categories.dart';
 import 'widgets/most_popular.dart';
 import 'widgets/promo_box.dart';
 
@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> brands = ['Adidas', 'Puma', 'Nike', 'Reebok'];
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -142,24 +141,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 16,
               ),
-              SizedBox(
-                height: 90,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: brands.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          left: index == 0 ? AppSizes.defaultMargin : 0,
-                          right: AppSizes.defaultMargin),
-                      child: BrandBox(
-                          text: brands[index],
-                          image:
-                              'assets/images/brand/${brands[index].toLowerCase()}.png'),
-                    );
-                  },
-                ),
-              ),
+              const BrandCategories(),
               const SizedBox(height: 36),
               Padding(
                 padding: const EdgeInsets.symmetric(

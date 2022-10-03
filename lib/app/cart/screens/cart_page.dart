@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
-import 'package:shoeping/shared/widgets/product_box.dart';
 import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
 
 import '../widgets/cart_product_box.dart';

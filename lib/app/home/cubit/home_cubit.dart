@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shoeping/app/authentication/models/user.dart';
 import 'package:shoeping/app/home/repositories/home_repository.dart';
+import 'package:shoeping/shared/models/brand.dart';
 import 'package:shoeping/shared/models/custom_error.dart';
 
 import '../../../shared/models/product.dart';
@@ -38,6 +39,19 @@ class HomeCubit extends Cubit<HomeState> {
     } on CustomError catch (e) {
       emit(state.copyWith(
         productStatus: ProductStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> getBrands() async {
+    emit(state.copyWith(brandStatus: BrandStatus.loading));
+    try {
+      final List<Brand> brands = await homeRepository.getBrands();
+      emit(state.copyWith(brandStatus: BrandStatus.success, brands: brands));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+        brandStatus: BrandStatus.error,
         error: e,
       ));
     }
