@@ -7,6 +7,7 @@ import 'package:shoeping/shared/models/brand.dart';
 import 'package:shoeping/shared/models/custom_error.dart';
 
 import '../../../shared/models/product.dart';
+import '../models/promo.dart';
 
 part 'home_state.dart';
 
@@ -52,6 +53,19 @@ class HomeCubit extends Cubit<HomeState> {
     } on CustomError catch (e) {
       emit(state.copyWith(
         brandStatus: BrandStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> getPromos() async {
+    emit(state.copyWith(promoStatus: PromoStatus.loading));
+    try {
+      final List<Promo> promos = await homeRepository.getPromos();
+      emit(state.copyWith(promoStatus: PromoStatus.success, promos: promos));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+        promoStatus: PromoStatus.error,
         error: e,
       ));
     }

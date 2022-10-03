@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shoeping/config/constant.dart';
+
+import '../../../models/promo.dart';
 
 class PromoBox extends StatelessWidget {
-  const PromoBox({
+  final Promo promo;
+  const PromoBox(
+    this.promo, {
     Key? key,
   }) : super(key: key);
 
@@ -12,8 +17,8 @@ class PromoBox extends StatelessWidget {
       width: 327,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        image: const DecorationImage(
-          image: AssetImage('assets/images/promo/promo-1.png'),
+        image: DecorationImage(
+          image: NetworkImage(imageAPIURL + promo.image),
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:shoeping/config/theme.dart';
 import '../../cubit/home_cubit.dart';
 import 'widgets/brand_categories.dart';
 import 'widgets/most_popular.dart';
+import 'widgets/promo.dart';
 import 'widgets/promo_box.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     context.read<HomeCubit>().getUser();
+    context.read<HomeCubit>().getPromos();
     super.initState();
   }
 
@@ -105,21 +107,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 16,
               ),
-              SizedBox(
-                height: 180,
-                child: ListView.builder(
-                  itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          left: index == 0 ? AppSizes.defaultMargin : 0,
-                          right: AppSizes.defaultMargin),
-                      child: const PromoBox(),
-                    );
-                  },
-                ),
-              ),
+              const HomePromoWidget(),
               const SizedBox(height: 36),
               Padding(
                 padding: const EdgeInsets.symmetric(

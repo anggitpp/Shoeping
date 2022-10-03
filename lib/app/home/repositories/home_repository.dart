@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoeping/app/authentication/models/user.dart';
+import 'package:shoeping/app/home/models/promo.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/shared/models/brand.dart';
 
@@ -75,6 +76,32 @@ class HomeRepository {
       }
 
       return brands;
+    } on DioError catch (e) {
+      throw CustomError(
+          code: e.response!.statusCode.toString(),
+          message: e.response!.data!['error'],
+          plugin: 'server error');
+    } catch (e) {
+      throw CustomError(
+          code: 'Exception',
+          message: e.toString(),
+          plugin: 'flutter_error/server_error');
+    }
+  }
+
+  Future<List<Promo>> getPromos() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? '';
+      var response = await _dio.get('$apiURL/promos',
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+
+      List<Promo> promos = [];
+      for (var promo in response.data['data']) {
+        promos.add(Promo.fromJson(promo));
+      }
+
+      return promos;
     } on DioError catch (e) {
       throw CustomError(
           code: e.response!.statusCode.toString(),

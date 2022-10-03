@@ -21,6 +21,13 @@ enum BrandStatus {
   error,
 }
 
+enum PromoStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
 class HomeState extends Equatable {
   final UserStatus userStatus;
   final UserModel? userModel;
@@ -28,6 +35,8 @@ class HomeState extends Equatable {
   final List<Product>? products;
   final BrandStatus brandStatus;
   final List<Brand>? brands;
+  final PromoStatus promoStatus;
+  final List<Promo>? promos;
   final CustomError error;
   const HomeState({
     required this.userStatus,
@@ -36,6 +45,8 @@ class HomeState extends Equatable {
     this.products,
     required this.brandStatus,
     this.brands,
+    required this.promoStatus,
+    this.promos,
     required this.error,
   });
 
@@ -44,6 +55,7 @@ class HomeState extends Equatable {
         userStatus: UserStatus.initial,
         productStatus: ProductStatus.initial,
         brandStatus: BrandStatus.initial,
+        promoStatus: PromoStatus.initial,
         error: CustomError());
   }
 
@@ -54,6 +66,8 @@ class HomeState extends Equatable {
     List<Product>? products,
     BrandStatus? brandStatus,
     List<Brand>? brands,
+    PromoStatus? promoStatus,
+    List<Promo>? promos,
     CustomError? error,
   }) {
     return HomeState(
@@ -63,13 +77,15 @@ class HomeState extends Equatable {
       products: products ?? this.products,
       brandStatus: brandStatus ?? this.brandStatus,
       brands: brands ?? this.brands,
+      promoStatus: promoStatus ?? this.promoStatus,
+      promos: promos ?? this.promos,
       error: error ?? this.error,
     );
   }
 
   @override
   String toString() {
-    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, error: $error)';
+    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, promoStatus: $promoStatus, promos: $promos, error: $error)';
   }
 
   @override
@@ -81,6 +97,8 @@ class HomeState extends Equatable {
       products ?? '',
       brandStatus,
       brands ?? '',
+      promoStatus,
+      promos ?? '',
       error,
     ];
   }
