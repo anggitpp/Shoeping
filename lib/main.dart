@@ -55,8 +55,9 @@ class MyApp extends StatelessWidget {
                 LoginCubit(authRepository: context.read<AuthRepository>()),
           ),
           BlocProvider<HomeCubit>(
-              create: (context) =>
-                  HomeCubit(homeRepository: context.read<HomeRepository>()))
+            create: (context) =>
+                HomeCubit(homeRepository: context.read<HomeRepository>()),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

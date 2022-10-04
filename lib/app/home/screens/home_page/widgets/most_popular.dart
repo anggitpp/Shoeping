@@ -40,8 +40,9 @@ class _HomeMostPopularWidgetState extends State<HomeMostPopularWidget> {
                 children: List.generate(
                   state.products!.length,
                   (index) => GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, RouteName.detailProduct),
+                      onTap: () => Navigator.pushNamed(
+                          context, RouteName.detailProduct,
+                          arguments: state.products![index]),
                       child: ProductBox(state.products![index])),
                 ),
               )

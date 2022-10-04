@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:shoeping/app/splash/screens/splash_page.dart';
+import 'package:shoeping/shared/models/product.dart';
 
 import '../app/home/screens/search_page/search_page.dart';
 import '../app/main/screens/main_page.dart';
@@ -34,7 +36,9 @@ final routes = {
   RouteName.confirmPin: (context) => const ConfirmPinPage(),
   RouteName.verifyReset: (context) => const VerifyResetPasswordPage(),
   RouteName.resetPassword: (context) => const ResetPasswordPage(),
-  RouteName.detailProduct: (context) => const DetailProductPage(),
+  RouteName.detailProduct: (context) => DetailProductPage(
+        product: ModalRoute.of(context)!.settings.arguments as Product,
+      ),
   RouteName.cart: (context) => const CartPage(),
   RouteName.checkout: (context) => const CheckoutPage(),
   RouteName.addAddress: (context) => const AddAddressPage(),

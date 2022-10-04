@@ -18,6 +18,7 @@ class PromoBox extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
+          fit: BoxFit.cover,
           image: NetworkImage(imageAPIURL + promo.image),
         ),
       ),

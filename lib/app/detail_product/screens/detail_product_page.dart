@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/config/theme.dart';
+import 'package:shoeping/shared/models/product.dart';
 
 import '../../../shared/widgets/default_divider.dart';
+import 'widgets/detail_product_image.dart';
+import 'widgets/size.dart';
 
 class DetailProductPage extends StatelessWidget {
-  const DetailProductPage({Key? key}) : super(key: key);
+  final Product product;
+  const DetailProductPage({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,45 +74,7 @@ class DetailProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
-                        Container(
-                          width: AppSizes.phoneWidthMargin(context),
-                          padding: const EdgeInsets.all(16),
-                          height: 302,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: lighterBlack,
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/sepatu/sepatu-1.png',
-                                width: 244,
-                                height: 200,
-                              ),
-                              const SizedBox(height: 24),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: List.generate(
-                                  5,
-                                  (index) => Container(
-                                    padding: const EdgeInsets.all(6),
-                                    width: 49,
-                                    height: 46,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: darkerBlack,
-                                    ),
-                                    child: Image.asset(
-                                        'assets/images/sepatu/sepatu-1.png'),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        DetailProductImage(product.images),
                         const SizedBox(
                           height: 17,
                         ),
@@ -112,9 +82,10 @@ class DetailProductPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Metcon 8 Superblack',
+                                  product.name,
                                   style: veryLargeText.copyWith(fontSize: 22),
                                 ),
                                 const SizedBox(
@@ -123,7 +94,7 @@ class DetailProductPage extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      'Nike ·',
+                                      '${product.brandName} ·',
                                       style: mediumMediumText,
                                     ),
                                     const SizedBox(
@@ -200,12 +171,11 @@ class DetailProductPage extends StatelessWidget {
                           text: TextSpan(
                             style: smallText.copyWith(color: Colors.white),
                             children: [
-                              const TextSpan(
-                                text:
-                                    'You chase the clock, challenging & encouraging each other all in the name of achieving goals & making gains. ',
+                              TextSpan(
+                                text: product.description,
                               ),
                               TextSpan(
-                                text: 'Read More',
+                                text: ' Read More',
                                 style: smallText.copyWith(color: mainColor),
                               ),
                             ],
@@ -221,25 +191,7 @@ class DetailProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 12,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: sizes
-                              .map(
-                                (e) => Container(
-                                  width: 54,
-                                  height: 54,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: lighterBlack),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    e,
-                                    style: extraLargeText,
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
+                        SizeWidget(sizes: sizes),
                         const SizedBox(
                           height: 18,
                         ),
@@ -265,7 +217,7 @@ class DetailProductPage extends StatelessWidget {
                                           locale: 'id',
                                           decimalDigits: 0,
                                           symbol: 'IDR ')
-                                      .format(3195953),
+                                      .format(product.price),
                                   style: extraLargeText,
                                 )
                               ],
