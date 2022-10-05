@@ -20,4 +20,5 @@ class RouteName {
   static const wishlist = 'wishlist';
   static const notification = 'notification';
   static const profile = 'profile';
+  static const editProfile = 'edit-profile';
 }

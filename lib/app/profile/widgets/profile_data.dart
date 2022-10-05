@@ -22,41 +22,19 @@ class ProfileDataWidget extends StatelessWidget {
                     style: extraLargeTitleText,
                   ),
                   const SizedBox(height: 34),
-                  SizedBox(
+                  Container(
                     width: 120,
                     height: 120,
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: state.userModel!.photo.isEmpty
-                                ? const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/profile/me.png'),
-                                    fit: BoxFit.cover,
-                                  )
-                                : DecorationImage(
-                                    image: NetworkImage(
-                                        imageAPIURL + state.userModel!.photo)),
-                          ),
-                        ),
-                        Align(
-                          alignment: const Alignment(1, 0.9),
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: mainColor),
-                            child: const Icon(
-                              Icons.edit,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: state.userModel!.photo.isEmpty
+                          ? const DecorationImage(
+                              image: AssetImage('assets/images/profile/me.png'),
+                              fit: BoxFit.cover,
+                            )
+                          : DecorationImage(
+                              image: NetworkImage(
+                                  imageAPIURL + state.userModel!.photo)),
                     ),
                   ),
                   const SizedBox(height: 16),
