@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
+import 'package:shoeping/config/constant.dart';
 
 import '../../../config/theme.dart';
 
@@ -29,12 +30,17 @@ class ProfileDataWidget extends StatelessWidget {
                         Container(
                           width: 120,
                           height: 120,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/profile/me.png'),
-                              fit: BoxFit.cover,
-                            ),
+                            image: state.userModel!.photo.isEmpty
+                                ? const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/profile/me.png'),
+                                    fit: BoxFit.cover,
+                                  )
+                                : DecorationImage(
+                                    image: NetworkImage(
+                                        imageAPIURL + state.userModel!.photo)),
                           ),
                         ),
                         Align(
@@ -59,7 +65,7 @@ class ProfileDataWidget extends StatelessWidget {
                     style: veryLargeText.copyWith(fontSize: 22),
                   ),
                   const SizedBox(height: 6),
-                  Text('+62 812 9293 0923', style: mediumText),
+                  Text(state.userModel!.email, style: mediumText),
                   const SizedBox(height: 36),
                 ],
               )
