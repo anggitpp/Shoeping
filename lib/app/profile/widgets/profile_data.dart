@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/shared/widgets/error_dialog.dart';
 
 import '../../../config/theme.dart';
 
@@ -12,7 +13,12 @@ class ProfileDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state.userStatus == UserStatus.error) {
+          errorDialog(context, state.error);
+        }
+      },
       builder: (context, state) {
         return state.userStatus == UserStatus.success
             ? Column(

@@ -37,8 +37,9 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_slidable: ^2.0.0
+  geolocator: ^9.0.2
   google_fonts: ^3.0.1
-  google_maps_flutter: ^2.2.0
+  google_maps_flutter: ^2.2.1
   http: ^0.13.5
   intl: ^0.17.0
   material_design_icons_flutter: ^5.0.6996

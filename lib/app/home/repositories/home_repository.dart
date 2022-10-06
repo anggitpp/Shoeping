@@ -25,11 +25,13 @@ class HomeRepository {
 
       return UserModel.fromJson(response.data['data']);
     } on DioError catch (e) {
+      print(e);
       throw CustomError(
           code: e.response!.statusCode.toString(),
           message: e.response!.data!['error'],
           plugin: 'server error');
     } catch (e) {
+      print(e);
       throw CustomError(
           code: 'Exception',
           message: e.toString(),

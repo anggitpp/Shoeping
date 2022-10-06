@@ -7,6 +7,7 @@ import '../app/main/screens/main_page.dart';
 import '../app/notification/screens/notification_page.dart';
 import '../app/payment/screens/payment_method_page.dart';
 import '../app/profile/screens/edit_profile_page.dart';
+import '../app/profile/screens/my_address_page.dart';
 import '../app/profile/screens/profile_page.dart';
 import '../app/address/screens/add_address_page.dart';
 import '../app/cart/screens/cart_page.dart';
@@ -26,7 +27,7 @@ import '../app/wishlist/screens/wishlist_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.splash: (context) => const SplashPage(),
+  RouteName.splash: (context) => const AddAddressPage(),
   RouteName.main: (context) => const MainPage(),
   RouteName.home: (context) => const HomePage(),
   RouteName.registration: (context) => const RegistrationPage(),
@@ -50,4 +51,5 @@ final routes = {
   RouteName.notification: (context) => const NotificationPage(),
   RouteName.profile: (context) => const ProfilePage(),
   RouteName.editProfile: (context) => const EditProfilePage(),
+  RouteName.myAddress: (context) => const MyAddressPage(),
 };

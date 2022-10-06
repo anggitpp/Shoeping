@@ -21,4 +21,5 @@ class RouteName {
   static const notification = 'notification';
   static const profile = 'profile';
   static const editProfile = 'edit-profile';
+  static const myAddress = 'my-address';
 }

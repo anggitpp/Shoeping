@@ -33,9 +33,11 @@ class ProfilePage extends StatelessWidget {
                     onTap: () =>
                         Navigator.pushNamed(context, RouteName.editProfile),
                   ),
-                  const ProfilePageItem(
+                  ProfilePageItem(
                     icon: MdiIcons.mapMarkerOutline,
                     text: 'My Address',
+                    onTap: () =>
+                        Navigator.pushNamed(context, RouteName.myAddress),
                   ),
                   const ProfilePageItem(
                     icon: MdiIcons.walletOutline,
