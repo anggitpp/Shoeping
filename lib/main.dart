@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/address/cubit/address_cubit.dart';
+import 'package:shoeping/app/address/repositories/address_repository.dart';
 import 'package:shoeping/app/authentication/cubits/login/login_cubit.dart';
 import 'package:shoeping/app/authentication/cubits/registration/registration_cubit.dart';
 import 'package:shoeping/app/home/repositories/home_repository.dart';
@@ -46,6 +48,7 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(create: ((context) => HomeRepository())),
         RepositoryProvider(create: ((context) => ProfileRepository())),
+        RepositoryProvider(create: ((context) => AddressRepository())),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -64,6 +67,11 @@ class MyApp extends StatelessWidget {
           BlocProvider<ProfileCubit>(
             create: (context) => ProfileCubit(
                 profileRepository: context.read<ProfileRepository>()),
+          ),
+          BlocProvider<AddressCubit>(
+            create: (context) => AddressCubit(
+              addressRepository: context.read<AddressRepository>(),
+            ),
           ),
         ],
         child: MaterialApp(

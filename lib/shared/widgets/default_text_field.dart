@@ -25,6 +25,7 @@ class DefaultTextField extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        autocorrect: false,
         initialValue: initialValue,
         controller: controller,
         enabled: isEnabled,

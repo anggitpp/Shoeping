@@ -32,7 +32,7 @@ class SubmitButtonWithIcon extends StatelessWidget {
           elevation: 0,
           backgroundColor: color,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(100),
           ),
         ),
         onPressed: onTap ?? () {},
