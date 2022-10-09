@@ -68,7 +68,7 @@ class MyAddressBox extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            address.detail,
+            address.address,
             style: mediumMediumText,
           ),
           SizedBox(

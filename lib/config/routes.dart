@@ -27,7 +27,7 @@ import '../app/wishlist/screens/wishlist_page.dart';
 import '../config/route_name.dart';
 
 final routes = {
-  RouteName.splash: (context) => const AddAddressPage(),
+  RouteName.splash: (context) => const SplashPage(),
   RouteName.main: (context) => const MainPage(),
   RouteName.home: (context) => const HomePage(),
   RouteName.registration: (context) => const RegistrationPage(),

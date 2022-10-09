@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/app/authentication/models/user_address.dart';
+import 'package:shoeping/app/home/cubit/home_cubit.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/default_text_field.dart';
@@ -33,13 +34,16 @@ class AddAddressModalBottomSheet extends StatelessWidget {
     return BlocConsumer<AddressCubit, AddressState>(
       listener: (context, state) {
         if (state.addressStatus == AddressStatus.success) {
-          Navigator.pushReplacementNamed(context, RouteName.myAddress);
+          BlocProvider.of<HomeCubit>(context).getUser().then((value) =>
+              Navigator.popUntil(
+                  context, (route) => route.settings.name == 'my-address'));
         }
         if (state.addressStatus == AddressStatus.error) {
           errorDialog(context, state.error);
         }
       },
       builder: (context, state) {
+        print(state.addressStatus);
         var detailCity = [
           placemark.locality,
           placemark.administrativeArea,
@@ -58,7 +62,9 @@ class AddAddressModalBottomSheet extends StatelessWidget {
               HeaderPage(
                 'Detail Alamat',
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: const Padding(
                     padding: EdgeInsets.only(left: AppSizes.defaultMargin),
                     child: Icon(Icons.arrow_back, color: Colors.white),
@@ -132,6 +138,7 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                         Switch(
                             value: state.isPrimaryAddress,
                             onChanged: (value) {
+                              print(value);
                               context
                                   .read<AddressCubit>()
                                   .setPrimaryAddress(value);

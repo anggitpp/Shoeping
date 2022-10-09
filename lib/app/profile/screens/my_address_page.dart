@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/authentication/models/user_address.dart';
 import 'package:shoeping/app/profile/screens/widgets/my_address_box.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
@@ -18,47 +19,55 @@ class MyAddressPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.defaultMargin, vertical: 20),
-              child: Column(children: [
-                HeaderPage(
-                  'My Address',
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.defaultMargin, vertical: 20),
+                child: Column(children: [
+                  HeaderPage(
+                    'My Address',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) {
-                    return Column(
-                      children: List.generate(
-                        state.userModel!.addresses!.length,
-                        (index) =>
-                            MyAddressBox(state.userModel!.addresses![index]),
-                      ),
-                    );
-                  },
-                ),
-              ]),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      state.userModel!.addresses!.sort((a, b) =>
+                          a.status.toString().compareTo(b.status.toString()));
+
+                      return Column(
+                        children: List.generate(
+                          state.userModel!.addresses!.length,
+                          (index) =>
+                              MyAddressBox(state.userModel!.addresses![index]),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                ]),
+              ),
             ),
             Align(
-              alignment: Alignment(0, 0.9),
+              alignment: const Alignment(0, 0.9),
               child: SubmitButtonWithIcon(
                 width: AppSizes.phoneWidthMargin(context),
                 text: 'Add New Address',
                 onTap: () => Navigator.pushNamed(context, RouteName.addAddress),
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 isDark: true,
-                color: lighterBlack,
+                color: lightGrey,
               ),
             )
           ],

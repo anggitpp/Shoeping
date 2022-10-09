@@ -60,6 +60,7 @@ class AddressCubit extends Cubit<AddressState> {
   }
 
   Future<void> setPrimaryAddress(value) async {
-    emit(state.copyWith(isPrimaryAddress: value));
+    emit(state.copyWith(
+        addressStatus: AddressStatus.initial, isPrimaryAddress: value));
   }
 }

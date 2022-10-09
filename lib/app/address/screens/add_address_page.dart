@@ -49,7 +49,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (BuildContext context) {
-                    return AddAddressModalBottomSheet(placemark!);
+                    return AddAddressModalBottomSheet(state.placemark!);
                   });
             });
         return Scaffold(
