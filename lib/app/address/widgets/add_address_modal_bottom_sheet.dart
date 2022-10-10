@@ -15,7 +15,7 @@ import '../../../shared/widgets/default_divider.dart';
 import '../../../shared/widgets/submit_button_with_icon.dart';
 import '../cubit/address_cubit.dart';
 
-class AddAddressModalBottomSheet extends StatelessWidget {
+class AddAddressModalBottomSheet extends StatefulWidget {
   final UserAddress? userAddress;
   final Placemark placemark;
   const AddAddressModalBottomSheet(
@@ -25,21 +25,31 @@ class AddAddressModalBottomSheet extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AddAddressModalBottomSheet> createState() =>
+      _AddAddressModalBottomSheetState();
+}
+
+class _AddAddressModalBottomSheetState
+    extends State<AddAddressModalBottomSheet> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController detailController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    titleController.text = widget.userAddress?.title ?? '';
+    nameController.text = widget.userAddress?.name ?? '';
+    phoneController.text = widget.userAddress?.phoneNumber ?? '';
+    addressController.text =
+        '${widget.placemark.street}, ${widget.placemark.locality}';
+    detailController.text = widget.userAddress?.detail ?? '';
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController titleController = TextEditingController(
-      text: userAddress?.title ?? '',
-    );
-    final TextEditingController nameController = TextEditingController(
-      text: userAddress?.name ?? '',
-    );
-    final TextEditingController phoneController = TextEditingController(
-      text: userAddress?.phoneNumber ?? '',
-    );
-    final TextEditingController addressController = TextEditingController(
-        text: '${placemark.street}, ${placemark.locality}');
-    final TextEditingController detailController = TextEditingController(
-      text: userAddress?.detail ?? '',
-    );
     return BlocConsumer<AddressCubit, AddressState>(
       listener: (context, state) {
         if (state.addressStatus == AddressStatus.success) {
@@ -53,9 +63,9 @@ class AddAddressModalBottomSheet extends StatelessWidget {
       },
       builder: (context, state) {
         var detailCity = [
-          placemark.locality,
-          placemark.administrativeArea,
-          placemark.postalCode
+          widget.placemark.locality,
+          widget.placemark.administrativeArea,
+          widget.placemark.postalCode
         ].join(', ');
         return Container(
           padding: const EdgeInsets.symmetric(vertical: AppSizes.defaultMargin),
@@ -89,7 +99,7 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      placemark.subLocality!,
+                      widget.placemark.subLocality!,
                       style: extraLargeTitleText.copyWith(color: Colors.white),
                     ),
                     const SizedBox(
@@ -146,7 +156,7 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                         Switch(
                             value: state.isPrimaryAddress,
                             onChanged: (value) {
-                              if (userAddress?.status ==
+                              if (widget.userAddress?.status ==
                                   StatusAddress.primary) {
                                 return;
                               }
@@ -176,11 +186,11 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   var address = UserAddress(
-                                      id: userAddress != null
-                                          ? userAddress!.id
+                                      id: widget.userAddress != null
+                                          ? widget.userAddress!.id
                                           : 1,
-                                      userId: userAddress != null
-                                          ? userAddress!.userId
+                                      userId: widget.userAddress != null
+                                          ? widget.userAddress!.userId
                                           : 1,
                                       title: titleController.text,
                                       subtitle: detailCity,
@@ -195,7 +205,7 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                                           : StatusAddress.secondary);
 
                                   //create or update
-                                  userAddress == null
+                                  widget.userAddress == null
                                       ? context
                                           .read<AddressCubit>()
                                           .storeAddress(address)
@@ -205,8 +215,8 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                                 },
                               ),
                               const SizedBox(height: 10),
-                              userAddress != null &&
-                                      userAddress?.status !=
+                              widget.userAddress != null &&
+                                      widget.userAddress?.status !=
                                           StatusAddress.primary
                                   ? SubmitButtonWithIcon(
                                       width: AppSizes.phoneWidthMargin(context),
@@ -219,7 +229,7 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                                       ),
                                       onTap: () => context
                                           .read<AddressCubit>()
-                                          .deleteAddress(userAddress!))
+                                          .deleteAddress(widget.userAddress!))
                                   : const SizedBox(),
                             ],
                           )

@@ -73,7 +73,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
         Marker marker = Marker(
             markerId: const MarkerId('marker'),
             position: LatLng(state.addressLat, state.addressLong),
-            infoWindow: InfoWindow(title: state.markName),
+            infoWindow: InfoWindow(
+                title:
+                    '${state.placemark!.street}, ${state.placemark!.locality}'),
             onTap: () {
               showModalBottomSheet(
                   isScrollControlled: true,
