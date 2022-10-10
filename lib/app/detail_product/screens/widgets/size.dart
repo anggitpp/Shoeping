@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../config/theme.dart';
-import '../../../../shared/widgets/default_divider.dart';
 import 'size_box.dart';
 
 class SizeWidget extends StatefulWidget {

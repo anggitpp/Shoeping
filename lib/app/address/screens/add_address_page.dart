@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shoeping/app/authentication/models/user_address.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/error_dialog.dart';
 
@@ -19,11 +20,28 @@ class AddAddressPage extends StatefulWidget {
 class _AddAddressPageState extends State<AddAddressPage> {
   final Completer<GoogleMapController> mapsController = Completer();
 
+  UserAddress? userAddress;
+
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      if (ModalRoute.of(context)?.settings.arguments == null) {
+        context.read<AddressCubit>().getUserLocation();
+      } else {
+        setState(() {
+          userAddress = (ModalRoute.of(context)?.settings.arguments
+              as Map<String, dynamic>)['address'];
 
-    context.read<AddressCubit>().getUserLocation();
+          context.read<AddressCubit>().setPrimaryAddress(
+              userAddress!.status == StatusAddress.secondary ? false : true);
+
+          context.read<AddressCubit>().getDetailLocation(
+              double.parse(userAddress!.latitude),
+              double.parse(userAddress!.longitude));
+        });
+      }
+    });
   }
 
   @override
@@ -32,6 +50,19 @@ class _AddAddressPageState extends State<AddAddressPage> {
       listener: (context, state) {
         if (state.addressStatus == AddressStatus.error) {
           errorDialog(context, state.error);
+        }
+
+        if (state.changeAddressStatus == ChangeAddressStatus.success) {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              context: context,
+              builder: (BuildContext context) {
+                return AddAddressModalBottomSheet(
+                  state.placemark!,
+                  userAddress: userAddress,
+                );
+              });
         }
       },
       builder: (context, state) {
@@ -49,7 +80,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (BuildContext context) {
-                    return AddAddressModalBottomSheet(state.placemark!);
+                    return AddAddressModalBottomSheet(
+                      state.placemark!,
+                      userAddress: userAddress,
+                    );
                   });
             });
         return Scaffold(
@@ -60,24 +94,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       mapType: MapType.terrain,
                       initialCameraPosition: kGooglePlex,
                       onMapCreated: (GoogleMapController controller) {
-                        mapsController.complete(controller);
+                        if (!mapsController.isCompleted) {
+                          mapsController.complete(controller);
+                        }
                       },
                       onTap: (LatLng lng) {
                         context
                             .read<AddressCubit>()
-                            .getDetailLocation(lng.latitude, lng.longitude)
-                            .then((value) {
-                          Timer(const Duration(milliseconds: 500), () {
-                            showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AddAddressModalBottomSheet(
-                                      state.placemark!);
-                                });
-                          });
-                        });
+                            .changeLocation(lng.latitude, lng.longitude);
                       },
                       markers: {marker},
                     )

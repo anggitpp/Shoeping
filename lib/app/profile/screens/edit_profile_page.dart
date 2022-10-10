@@ -91,7 +91,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           'Edit Profile',
                           InkWell(
                             onTap: () => Navigator.pop(context),
-                            child: InkWell(
+                            child: const InkWell(
                               child: Icon(
                                 Icons.arrow_back,
                                 color: Colors.white,
@@ -99,7 +99,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
@@ -139,7 +139,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         DefaultTextField(
@@ -156,7 +156,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               FormValidator.validateText(value, 'Name',
                                   minLength: 2),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         profileState.profileSubmitStatus ==

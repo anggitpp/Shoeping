@@ -16,8 +16,8 @@ class MyAddressBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: AppSizes.phoneWidthMargin(context),
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: lighterBlack,
@@ -31,7 +31,7 @@ class MyAddressBox extends StatelessWidget {
                 address.title,
                 style: largeMediumText,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 6,
               ),
               address.status == StatusAddress.primary
@@ -46,10 +46,10 @@ class MyAddressBox extends StatelessWidget {
                         style: mediumMediumText.copyWith(color: mainColor),
                       ),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             children: [
               Text(
@@ -66,12 +66,12 @@ class MyAddressBox extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             address.address,
             style: mediumMediumText,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(

@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shoeping/app/authentication/models/user_address.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
-import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/default_text_field.dart';
 import 'package:shoeping/shared/widgets/error_dialog.dart';
@@ -17,20 +16,30 @@ import '../../../shared/widgets/submit_button_with_icon.dart';
 import '../cubit/address_cubit.dart';
 
 class AddAddressModalBottomSheet extends StatelessWidget {
+  final UserAddress? userAddress;
   final Placemark placemark;
   const AddAddressModalBottomSheet(
     this.placemark, {
+    this.userAddress,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController titleController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController titleController = TextEditingController(
+      text: userAddress?.title ?? '',
+    );
+    final TextEditingController nameController = TextEditingController(
+      text: userAddress?.name ?? '',
+    );
+    final TextEditingController phoneController = TextEditingController(
+      text: userAddress?.phoneNumber ?? '',
+    );
     final TextEditingController addressController = TextEditingController(
         text: '${placemark.street}, ${placemark.locality}');
-    final TextEditingController detailController = TextEditingController();
+    final TextEditingController detailController = TextEditingController(
+      text: userAddress?.detail ?? '',
+    );
     return BlocConsumer<AddressCubit, AddressState>(
       listener: (context, state) {
         if (state.addressStatus == AddressStatus.success) {
@@ -43,7 +52,6 @@ class AddAddressModalBottomSheet extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        print(state.addressStatus);
         var detailCity = [
           placemark.locality,
           placemark.administrativeArea,
@@ -138,7 +146,10 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                         Switch(
                             value: state.isPrimaryAddress,
                             onChanged: (value) {
-                              print(value);
+                              if (userAddress?.status ==
+                                  StatusAddress.primary) {
+                                return;
+                              }
                               context
                                   .read<AddressCubit>()
                                   .setPrimaryAddress(value);
@@ -153,30 +164,64 @@ class AddAddressModalBottomSheet extends StatelessWidget {
                       height: 24,
                     ),
                     state.addressStatus != AddressStatus.loading
-                        ? SubmitButtonWithIcon(
-                            width: AppSizes.phoneWidthMargin(context),
-                            color: mainColor,
-                            text: 'Save Address',
-                            icon: Icon(
-                              Icons.add,
-                              color: lighterBlack,
-                            ),
-                            onTap: () => context
-                                .read<AddressCubit>()
-                                .storeAddress(UserAddress(
-                                    id: 1,
-                                    userId: 1,
-                                    title: titleController.text,
-                                    subtitle: detailCity,
-                                    name: nameController.text,
-                                    phoneNumber: phoneController.text,
-                                    address: addressController.text,
-                                    detail: detailController.text,
-                                    longitude: state.addressLong.toString(),
-                                    latitude: state.addressLat.toString(),
-                                    status: state.isPrimaryAddress
-                                        ? StatusAddress.primary
-                                        : StatusAddress.secondary)),
+                        ? Column(
+                            children: [
+                              SubmitButtonWithIcon(
+                                width: AppSizes.phoneWidthMargin(context),
+                                color: mainColor,
+                                text: 'Save Address',
+                                icon: Icon(
+                                  Icons.add,
+                                  color: lighterBlack,
+                                ),
+                                onTap: () {
+                                  var address = UserAddress(
+                                      id: userAddress != null
+                                          ? userAddress!.id
+                                          : 1,
+                                      userId: userAddress != null
+                                          ? userAddress!.userId
+                                          : 1,
+                                      title: titleController.text,
+                                      subtitle: detailCity,
+                                      name: nameController.text,
+                                      phoneNumber: phoneController.text,
+                                      address: addressController.text,
+                                      detail: detailController.text,
+                                      longitude: state.addressLong.toString(),
+                                      latitude: state.addressLat.toString(),
+                                      status: state.isPrimaryAddress
+                                          ? StatusAddress.primary
+                                          : StatusAddress.secondary);
+
+                                  //create or update
+                                  userAddress == null
+                                      ? context
+                                          .read<AddressCubit>()
+                                          .storeAddress(address)
+                                      : context
+                                          .read<AddressCubit>()
+                                          .updateAddress(address);
+                                },
+                              ),
+                              const SizedBox(height: 10),
+                              userAddress != null &&
+                                      userAddress?.status !=
+                                          StatusAddress.primary
+                                  ? SubmitButtonWithIcon(
+                                      width: AppSizes.phoneWidthMargin(context),
+                                      color: lightGrey,
+                                      isDark: true,
+                                      text: 'Delete Address',
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.white,
+                                      ),
+                                      onTap: () => context
+                                          .read<AddressCubit>()
+                                          .deleteAddress(userAddress!))
+                                  : const SizedBox(),
+                            ],
                           )
                         : const DefaultLoadingProgress(),
                     const SizedBox(

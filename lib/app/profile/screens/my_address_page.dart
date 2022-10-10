@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoeping/app/authentication/models/user_address.dart';
 import 'package:shoeping/app/profile/screens/widgets/my_address_box.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
@@ -47,13 +46,20 @@ class MyAddressPage extends StatelessWidget {
                       return Column(
                         children: List.generate(
                           state.userModel!.addresses!.length,
-                          (index) =>
-                              MyAddressBox(state.userModel!.addresses![index]),
+                          (index) => GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                      context, RouteName.addAddress,
+                                      arguments: {
+                                        'address':
+                                            state.userModel!.addresses![index]
+                                      }),
+                              child: MyAddressBox(
+                                  state.userModel!.addresses![index])),
                         ),
                       );
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                 ]),

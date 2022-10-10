@@ -8,7 +8,6 @@ import '../../cubit/home_cubit.dart';
 import 'widgets/brand_categories.dart';
 import 'widgets/most_popular.dart';
 import 'widgets/promo.dart';
-import 'widgets/promo_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

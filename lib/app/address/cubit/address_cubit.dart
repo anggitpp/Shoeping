@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -34,6 +34,7 @@ class AddressCubit extends Cubit<AddressState> {
 
   Future<void> getDetailLocation(
       double locLatitude, double locLongitude) async {
+    emit(state.copyWith(getLocationStatus: GetLocationStatus.loading));
     List<Placemark> placemarks = await placemarkFromCoordinates(
         locLatitude, locLongitude,
         localeIdentifier: 'id');
@@ -42,8 +43,20 @@ class AddressCubit extends Cubit<AddressState> {
           addressLat: locLatitude,
           addressLong: locLongitude,
           placemark: placemarks[0],
-          markName: placemarks[0].name),
+          markName: placemarks[0].name,
+          getLocationStatus: GetLocationStatus.success),
     );
+  }
+
+  Future<void> changeLocation(double locLatitude, double locLongitude) async {
+    emit(state.copyWith(changeAddressStatus: ChangeAddressStatus.loading));
+
+    await getDetailLocation(locLatitude, locLongitude);
+    emit(state.copyWith(changeAddressStatus: ChangeAddressStatus.success));
+
+    Future.delayed(const Duration(milliseconds: 150), () {
+      emit(state.copyWith(changeAddressStatus: ChangeAddressStatus.initial));
+    });
   }
 
   Future<void> storeAddress(UserAddress address) async {
@@ -51,6 +64,31 @@ class AddressCubit extends Cubit<AddressState> {
     try {
       await addressRepository.storeAddress(address);
 
+      emit(state.copyWith(addressStatus: AddressStatus.success));
+    } on CustomError catch (e) {
+      emit(
+        state.copyWith(addressStatus: AddressStatus.error, error: e),
+      );
+    }
+  }
+
+  Future<void> updateAddress(UserAddress address) async {
+    emit(state.copyWith(addressStatus: AddressStatus.loading));
+    try {
+      await addressRepository.updateAddress(address);
+
+      emit(state.copyWith(addressStatus: AddressStatus.success));
+    } on CustomError catch (e) {
+      emit(
+        state.copyWith(addressStatus: AddressStatus.error, error: e),
+      );
+    }
+  }
+
+  Future<void> deleteAddress(UserAddress address) async {
+    emit(state.copyWith(addressStatus: AddressStatus.loading));
+    try {
+      await addressRepository.deleteAddress(address.id);
       emit(state.copyWith(addressStatus: AddressStatus.success));
     } on CustomError catch (e) {
       emit(
