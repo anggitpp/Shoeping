@@ -1,7 +1,5 @@
 class RouteName {
   static const splash = '/';
-  static const main = 'main';
-  static const home = 'home';
   static const registration = 'registration';
   static const login = 'login';
   static const verify = 'verify';
@@ -10,6 +8,10 @@ class RouteName {
   static const confirmPin = 'confirm-pin';
   static const verifyReset = 'verify-reset';
   static const resetPassword = 'reset-password';
+  static const main = 'main';
+  static const home = 'home';
+  static const promo = 'promo';
+  static const detailPromo = 'detail-promo';
   static const detailProduct = 'detail-product';
   static const cart = 'cart';
   static const checkout = 'checkout';

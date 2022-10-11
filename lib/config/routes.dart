@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shoeping/app/splash/screens/splash_page.dart';
-import 'package:shoeping/shared/models/product.dart';
-
+import 'package:shoeping/app/home/screens/promo_page/promo_page.dart';
+import '../app/home/screens/detail_promo_page/detail_promo_page.dart';
+import '../app/splash/screens/splash_page.dart';
+import '../shared/models/product.dart';
+import '../app/home/models/promo.dart';
 import '../app/home/screens/search_page/search_page.dart';
 import '../app/main/screens/main_page.dart';
 import '../app/notification/screens/notification_page.dart';
@@ -28,8 +30,6 @@ import '../config/route_name.dart';
 
 final routes = {
   RouteName.splash: (context) => const SplashPage(),
-  RouteName.main: (context) => const MainPage(),
-  RouteName.home: (context) => const HomePage(),
   RouteName.registration: (context) => const RegistrationPage(),
   RouteName.login: (context) => const LoginPage(),
   RouteName.verify: (context) => const VerifyPage(),
@@ -38,6 +38,12 @@ final routes = {
   RouteName.confirmPin: (context) => const ConfirmPinPage(),
   RouteName.verifyReset: (context) => const VerifyResetPasswordPage(),
   RouteName.resetPassword: (context) => const ResetPasswordPage(),
+  RouteName.main: (context) => const MainPage(),
+  RouteName.home: (context) => const HomePage(),
+  RouteName.promo: (context) => const PromoPage(),
+  RouteName.detailPromo: (context) => DetailPromoPage(
+        promo: ModalRoute.of(context)!.settings.arguments as Promo,
+      ),
   RouteName.detailProduct: (context) => DetailProductPage(
         product: ModalRoute.of(context)!.settings.arguments as Product,
       ),

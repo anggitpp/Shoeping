@@ -6,6 +6,7 @@ enum PromoType {
 class Promo {
   int id;
   String name;
+  String code;
   String description;
   String image;
   PromoType type;
@@ -14,6 +15,7 @@ class Promo {
   Promo({
     required this.id,
     required this.name,
+    required this.code,
     required this.description,
     required this.image,
     required this.type,
@@ -23,6 +25,7 @@ class Promo {
   factory Promo.fromJson(Map<String, dynamic> json) => Promo(
         id: json["id"]?.toInt() ?? 0,
         name: json["name"] ?? '',
+        code: json["code"] ?? '',
         description: json["description"] ?? '',
         image: json["image"] ?? '',
         type: json["type"] == 'price' ? PromoType.price : PromoType.percent,
@@ -32,6 +35,7 @@ class Promo {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "code": code,
         "description": description,
         "image": image,
         "type": type == PromoType.price ? 'price' : 'percent',
