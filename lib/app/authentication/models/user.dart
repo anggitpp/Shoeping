@@ -1,5 +1,4 @@
 import 'package:shoeping/app/authentication/models/user_address.dart';
-import 'package:shoeping/app/authentication/models/user_payment_method.dart';
 import 'package:shoeping/app/authentication/models/user_wishlist.dart';
 
 class UserModel {
@@ -7,7 +6,6 @@ class UserModel {
   String name;
   String email;
   String photo;
-  List<UserPaymentMethod>? paymentMethods;
   List<UserWishlist>? wishlists;
   List<UserAddress>? addresses;
 
@@ -16,7 +14,6 @@ class UserModel {
     required this.name,
     required this.email,
     required this.photo,
-    required this.paymentMethods,
     required this.wishlists,
     required this.addresses,
   });
@@ -26,7 +23,6 @@ class UserModel {
     String? name,
     String? email,
     String? photo,
-    List<UserPaymentMethod>? paymentMethods,
     List<UserWishlist>? wishlists,
     List<UserAddress>? addresses,
   }) {
@@ -35,7 +31,6 @@ class UserModel {
       name: name ?? this.name,
       email: email ?? this.email,
       photo: photo ?? this.photo,
-      paymentMethods: paymentMethods ?? this.paymentMethods,
       wishlists: wishlists ?? this.wishlists,
       addresses: addresses ?? this.addresses,
     );
@@ -43,7 +38,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, photo: $photo, paymentMethods: $paymentMethods, wishlists: $wishlists, addresses: $addresses)';
+    return 'UserModel(id: $id, name: $name, email: $email, photo: $photo,  wishlists: $wishlists, addresses: $addresses)';
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -51,10 +46,6 @@ class UserModel {
         name: json["name"],
         email: json["email"],
         photo: json["photo"],
-        paymentMethods: json["payment_methods"] == null
-            ? null
-            : List<UserPaymentMethod>.from(json["payment_methods"]
-                .map((x) => UserPaymentMethod.fromJson(x))),
         wishlists: json["wishlists"] == null
             ? null
             : List<UserWishlist>.from(
@@ -70,9 +61,6 @@ class UserModel {
         "name": name,
         "email": email,
         "photo": photo,
-        "payment_methods": paymentMethods == null
-            ? null
-            : List<dynamic>.from(paymentMethods!.map((x) => x.toJson())),
         "wishlists": wishlists == null
             ? null
             : List<dynamic>.from(wishlists!.map((x) => x.toJson())),

@@ -14,12 +14,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  late StreamSubscription<User?> _listener;
+
   @override
   void initState() {
     super.initState();
 
     Timer(const Duration(seconds: 2), () {
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      _listener = FirebaseAuth.instance.authStateChanges().listen((User? user) {
         Navigator.pushReplacementNamed(
             context, user == null ? RouteName.login : RouteName.main);
       });
@@ -28,6 +30,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void dispose() {
+    _listener.cancel();
     super.dispose();
   }
 
