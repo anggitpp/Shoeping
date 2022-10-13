@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 
 import '../../../../../config/constant.dart';
@@ -43,9 +44,14 @@ class _BrandCategoriesState extends State<BrandCategories> {
                       padding: EdgeInsets.only(
                           left: index == 0 ? AppSizes.defaultMargin : 0,
                           right: AppSizes.defaultMargin),
-                      child: BrandBox(
-                          text: state.brands![index].name,
-                          image: imageAPIURL + state.brands![index].image),
+                      child: GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                            context, RouteName.detailBrand,
+                            arguments: state.brands![index]),
+                        child: BrandBox(
+                            text: state.brands![index].name,
+                            image: imageAPIURL + state.brands![index].image),
+                      ),
                     );
                   },
                 ),

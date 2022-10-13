@@ -31,7 +31,7 @@ class PromoPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   return ListView.builder(
