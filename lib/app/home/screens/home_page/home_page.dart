@@ -122,9 +122,13 @@ class _HomePageState extends State<HomePage> {
                       'Brand Categories',
                       style: largeText.copyWith(color: Colors.white),
                     ),
-                    Text(
-                      'See All',
-                      style: mediumLightText,
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, RouteName.brand),
+                      child: Text(
+                        'See All',
+                        style: mediumLightText,
+                      ),
                     ),
                   ],
                 ),

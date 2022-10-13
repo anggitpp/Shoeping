@@ -13,6 +13,7 @@ class RouteName {
   static const promo = 'promo';
   static const detailPromo = 'detail-promo';
   static const detailProduct = 'detail-product';
+  static const brand = 'brand';
   static const cart = 'cart';
   static const checkout = 'checkout';
   static const addAddress = 'add-address';

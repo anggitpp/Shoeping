@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../config/constant.dart';
-import '../../../../../config/theme.dart';
+import '../../config/constant.dart';
+import '../../config/theme.dart';
 
-class SearchProductBox extends StatelessWidget {
-  const SearchProductBox({Key? key}) : super(key: key);
+class ProductBoxWithBorder extends StatelessWidget {
+  const ProductBoxWithBorder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

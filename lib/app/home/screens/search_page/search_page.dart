@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoeping/app/home/screens/search_page/widgets/search_product_box.dart';
+import 'package:shoeping/shared/widgets/product_box_with_border.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_divider.dart';
@@ -236,9 +236,9 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                     )
                                   : const SizedBox(),
                               const SizedBox(height: 24),
-                              const SearchProductBox(),
+                              const ProductBoxWithBorder(),
                               const SizedBox(height: 12),
-                              const SearchProductBox(),
+                              const ProductBoxWithBorder(),
                             ],
                           ),
                         ),
