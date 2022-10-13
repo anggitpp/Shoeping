@@ -78,7 +78,7 @@ class WishlistPage extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return Padding(
-                                    padding: EdgeInsets.only(bottom: 12),
+                                    padding: const EdgeInsets.only(bottom: 12),
                                     child: WishlistProductBox(
                                       product: state
                                           .userModel!.wishlists![index].product,

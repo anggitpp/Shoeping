@@ -36,7 +36,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     form.save();
 
-    context.read<ProfileCubit>().updateProfile(name: _nameController.text);
+    context.read<ProfileCubit>().updateProfile(
+        name: _nameController.text, file: context.read<ProfileCubit>().image);
   }
 
   @override
@@ -118,21 +119,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               'assets/images/profile/me.png'),
                                           fit: BoxFit.cover,
                                         )
-                                      : DecorationImage(
-                                          image: NetworkImage(imageAPIURL +
-                                              state.userModel!.photo)),
+                                      : context.watch<ProfileCubit>().image !=
+                                              null
+                                          ? DecorationImage(
+                                              image: FileImage(context
+                                                  .watch<ProfileCubit>()
+                                                  .image!),
+                                              fit: BoxFit.cover)
+                                          : DecorationImage(
+                                              image: NetworkImage(imageAPIURL +
+                                                  state.userModel!.photo)),
                                 ),
                               ),
-                              Align(
-                                alignment: const Alignment(1, 0.9),
-                                child: Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: mainColor),
-                                  child: const Icon(
-                                    Icons.edit,
-                                    size: 20,
+                              GestureDetector(
+                                onTap: () =>
+                                    context.read<ProfileCubit>().getImage(),
+                                child: Align(
+                                  alignment: const Alignment(1, 0.9),
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: mainColor),
+                                    child: const Icon(
+                                      Icons.edit,
+                                      size: 20,
+                                    ),
                                   ),
                                 ),
                               ),

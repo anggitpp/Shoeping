@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,13 +9,23 @@ import '../../../shared/models/custom_error.dart';
 class ProfileRepository {
   final Dio _dio = Dio();
 
-  Future<void> updateProfile({required String name}) async {
+  Future<void> updateProfile({required String name, File? file}) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString('token') ?? '';
+      String? fileName = file?.path.split('/').last;
+      FormData formData = FormData.fromMap({
+        "name": name,
+      });
+      if (fileName != null) {
+        formData.files.addAll([
+          MapEntry("image_files", await MultipartFile.fromFile(file!.path)),
+        ]);
+      }
+
       var response = await _dio.post('$apiURL/editProfile',
           options: Options(headers: {'Authorization': 'Bearer $token'}),
-          data: {'name': name});
+          data: formData);
 
       return response.data;
     } on DioError catch (e) {

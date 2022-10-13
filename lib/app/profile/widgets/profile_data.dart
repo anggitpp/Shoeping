@@ -40,7 +40,8 @@ class ProfileDataWidget extends StatelessWidget {
                             )
                           : DecorationImage(
                               image: NetworkImage(
-                                  imageAPIURL + state.userModel!.photo)),
+                                  imageAPIURL + state.userModel!.photo),
+                              fit: BoxFit.cover),
                     ),
                   ),
                   const SizedBox(height: 16),

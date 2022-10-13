@@ -49,5 +49,7 @@
 	<string>This application requires location services to work</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This application requires location services to work</string>
+	<key>NSPhotoLibraryUsageDescription</key> 
+	<string>This app requires access to the camera.</string>
 </dict>
 </plist>
