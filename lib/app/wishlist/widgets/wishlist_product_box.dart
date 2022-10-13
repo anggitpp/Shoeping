@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:shoeping/shared/models/product.dart';
 import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
 
 class WishlistProductBox extends StatelessWidget {
+  final Product product;
   const WishlistProductBox({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -30,7 +34,10 @@ class WishlistProductBox extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
                     color: lighterBlack),
-                child: Image.asset('assets/images/sepatu/sepatu-1.png'),
+                child: Image.network(
+                  imageAPIURL + product.image,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(
                 width: 12,
@@ -39,7 +46,7 @@ class WishlistProductBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Metcon 7',
+                    product.name,
                     style: largeMediumText,
                   ),
                   const SizedBox(
@@ -48,7 +55,7 @@ class WishlistProductBox extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Nike ·',
+                        '${product.brandName} ·',
                         style: mediumMediumText,
                       ),
                       const SizedBox(
@@ -75,7 +82,7 @@ class WishlistProductBox extends StatelessWidget {
                   Text(
                     NumberFormat.currency(
                             locale: 'id', symbol: 'IDR ', decimalDigits: 0)
-                        .format(1979000),
+                        .format(product.price),
                     style:
                         largeMediumText.copyWith(fontWeight: FontWeight.bold),
                   ),

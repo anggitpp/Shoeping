@@ -18,7 +18,7 @@ class PromoPage extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
           child: Column(
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               HeaderPage(
                 'Data Promo',
                 IconButton(
@@ -31,6 +31,7 @@ class PromoPage extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   return ListView.builder(

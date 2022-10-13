@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/home/cubit/home_cubit.dart';
 import 'package:shoeping/app/wishlist/widgets/wishlist_product_box.dart';
 import 'package:shoeping/config/route_name.dart';
+import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
@@ -67,9 +70,24 @@ class WishlistPage extends StatelessWidget {
                     const SizedBox(height: 27),
                     Text('Your Wishlist Product', style: largeMediumText),
                     const SizedBox(height: 16),
-                    const WishlistProductBox(),
-                    const SizedBox(height: 12),
-                    const WishlistProductBox(),
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        return state.userStatus != UserStatus.loading
+                            ? ListView.builder(
+                                itemCount: state.userModel!.wishlists!.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(bottom: 12),
+                                    child: WishlistProductBox(
+                                      product: state
+                                          .userModel!.wishlists![index].product,
+                                    ),
+                                  );
+                                })
+                            : const DefaultLoadingProgress();
+                      },
+                    )
                   ],
                 ),
               ),

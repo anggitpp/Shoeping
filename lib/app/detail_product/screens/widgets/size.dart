@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shoeping/shared/models/product_size.dart';
 
 import '../../../../config/theme.dart';
 import 'size_box.dart';
 
 class SizeWidget extends StatefulWidget {
-  final List<String> sizes;
+  final List<ProductSize> sizes;
   const SizeWidget({
     Key? key,
     required this.sizes,
@@ -15,14 +16,13 @@ class SizeWidget extends StatefulWidget {
 }
 
 class _SizeWidgetState extends State<SizeWidget> {
-  String? selectedSize;
+  ProductSize? selectedSize;
 
   @override
   Widget build(BuildContext context) {
     selectedSize ??= widget.sizes.first;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: widget.sizes
           .map(
             (e) => GestureDetector(
@@ -31,10 +31,13 @@ class _SizeWidgetState extends State<SizeWidget> {
                   selectedSize = e;
                 });
               },
-              child: SizeBox(
-                size: e,
-                backgroundColor: selectedSize == e ? lightGrey : lighterBlack,
-                textColor: selectedSize == e ? mainColor : Colors.white,
+              child: Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: SizeBox(
+                  size: e.stock.toString(),
+                  backgroundColor: selectedSize == e ? lightGrey : lighterBlack,
+                  textColor: selectedSize == e ? mainColor : Colors.white,
+                ),
               ),
             ),
           )

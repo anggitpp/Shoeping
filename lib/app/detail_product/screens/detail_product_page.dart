@@ -25,7 +25,6 @@ class DetailProductPage extends StatelessWidget {
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
         ));
-    List<String> sizes = ['5', '5.5', '6.5', '7', '8.5'];
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -74,7 +73,7 @@ class DetailProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 24,
                         ),
-                        DetailProductImage(product.images),
+                        DetailProductImage(product.images!),
                         const SizedBox(
                           height: 17,
                         ),
@@ -191,7 +190,7 @@ class DetailProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 12,
                         ),
-                        SizeWidget(sizes: sizes),
+                        SizeWidget(sizes: product.sizes!),
                         const SizedBox(
                           height: 18,
                         ),

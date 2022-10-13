@@ -10,8 +10,8 @@ class Product {
   double price;
   String description;
   String image;
-  List<ProductImage> images;
-  List<ProductSize> sizes;
+  List<ProductImage>? images;
+  List<ProductSize>? sizes;
 
   Product({
     required this.id,
@@ -33,10 +33,14 @@ class Product {
         price: json["price"]?.toDouble() ?? '',
         description: json["description"] ?? '',
         image: json["image"] ?? '',
-        images: List<ProductImage>.from(
-            json["images"].map((x) => ProductImage.fromJson(x))),
-        sizes: List<ProductSize>.from(
-            json["stocks"].map((x) => ProductSize.fromJson(x))),
+        images: json["images"] == null
+            ? null
+            : List<ProductImage>.from(
+                json["images"].map((x) => ProductImage.fromJson(x))),
+        sizes: json["stocks"] == null
+            ? null
+            : List<ProductSize>.from(
+                json["stocks"].map((x) => ProductSize.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,7 +51,11 @@ class Product {
         "price": price,
         "description": description,
         "image": image,
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "stocks": List<dynamic>.from(sizes.map((x) => x.toJson())),
+        "images": images == null
+            ? null
+            : List<dynamic>.from(images!.map((x) => x.toJson())),
+        "stocks": sizes == null
+            ? null
+            : List<dynamic>.from(sizes!.map((x) => x.toJson())),
       };
 }
