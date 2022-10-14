@@ -128,7 +128,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               fit: BoxFit.cover)
                                           : DecorationImage(
                                               image: NetworkImage(imageAPIURL +
-                                                  state.userModel!.photo)),
+                                                  state.userModel!.photo),
+                                              fit: BoxFit.cover),
                                 ),
                               ),
                               GestureDetector(
