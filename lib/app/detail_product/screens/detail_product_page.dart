@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:shoeping/config/constant.dart';
@@ -8,6 +9,7 @@ import 'package:shoeping/config/theme.dart';
 import 'package:shoeping/shared/models/product.dart';
 
 import '../../../shared/widgets/default_divider.dart';
+import '../../home/cubit/home_cubit.dart';
 import 'widgets/detail_product_image.dart';
 import 'widgets/size.dart';
 
@@ -132,19 +134,35 @@ class DetailProductPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Container(
-                              width: 36,
-                              height: 36,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: lighterBlack,
-                              ),
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                'assets/icons/love-icon.png',
-                                width: 24,
-                                height: 24,
-                              ),
+                            BlocBuilder<HomeCubit, HomeState>(
+                              builder: (context, state) {
+                                return Container(
+                                  width: 36,
+                                  height: 36,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: lighterBlack,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: IconButton(
+                                    onPressed: () => state.userModel!.wishlists!
+                                            .any((element) =>
+                                                element.product == product)
+                                        ? context
+                                            .read<HomeCubit>()
+                                            .removeWishlist(product)
+                                        : context
+                                            .read<HomeCubit>()
+                                            .addWishlist(product),
+                                    icon: Icon(Icons.favorite,
+                                        color: state.userModel!.wishlists!.any(
+                                                (element) =>
+                                                    element.product == product)
+                                            ? Colors.red
+                                            : Colors.white),
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),

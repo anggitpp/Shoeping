@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
 import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/models/product.dart';
 
 import 'package:shoeping/shared/widgets/header_page.dart';
@@ -50,7 +51,7 @@ class DetailBrandPage extends StatelessWidget {
                     children: products
                         .map((e) => InkWell(
                               onTap: () => Navigator.pushNamed(
-                                  context, '/detail-product',
+                                  context, RouteName.detailProduct,
                                   arguments: e),
                               child: ProductBox(e),
                             ))

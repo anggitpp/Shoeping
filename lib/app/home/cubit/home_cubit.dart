@@ -83,6 +83,7 @@ class HomeCubit extends Cubit<HomeState> {
       var listWishlist = state.userModel!.wishlists!
           .where((element) => element.product != product)
           .toList();
+      print(listWishlist);
       emit(state.copyWith(
           wishlistStatus: WishlistStatus.success,
           userModel: state.userModel!.copyWith(wishlists: listWishlist)));
