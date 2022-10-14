@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
     MdiIcons.homeOutline,
     MdiIcons.heartOutline,
     MdiIcons.bellOutline,
-    MdiIcons.naturePeople,
+    MdiIcons.account,
   ];
   @override
   Widget build(BuildContext context) {
