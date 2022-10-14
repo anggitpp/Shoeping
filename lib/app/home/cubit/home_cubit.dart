@@ -7,6 +7,7 @@ import 'package:shoeping/shared/models/brand.dart';
 import 'package:shoeping/shared/models/custom_error.dart';
 
 import '../../../shared/models/product.dart';
+import '../../authentication/models/user_wishlist.dart';
 import '../models/promo.dart';
 
 part 'home_state.dart';
@@ -68,6 +69,55 @@ class HomeCubit extends Cubit<HomeState> {
         promoStatus: PromoStatus.error,
         error: e,
       ));
+    }
+  }
+
+  Future<void> removeWishlist(Product product) async {
+    emit(state.copyWith(
+      wishlistStatus: WishlistStatus.loading,
+    ));
+
+    try {
+      await homeRepository.removeWishlist(product.id);
+
+      var listWishlist = state.userModel!.wishlists!
+          .where((element) => element.product != product)
+          .toList();
+      emit(state.copyWith(
+          wishlistStatus: WishlistStatus.success,
+          userModel: state.userModel!.copyWith(wishlists: listWishlist)));
+    } catch (e) {
+      emit(state.copyWith(
+        wishlistStatus: WishlistStatus.error,
+        error: CustomError(message: e.toString()),
+      ));
+    }
+  }
+
+  Future<void> addWishlist(Product product) async {
+    emit(state.copyWith(
+      wishlistStatus: WishlistStatus.loading,
+    ));
+
+    try {
+      await homeRepository.storeWishlist(product.id);
+
+      var listWishlist = state.userModel!.wishlists!.toList();
+      listWishlist.add(
+        UserWishlist(
+          id: 0,
+          product: product,
+          userId: state.userModel!.id,
+        ),
+      );
+
+      emit(state.copyWith(
+          wishlistStatus: WishlistStatus.success,
+          userModel: state.userModel!.copyWith(wishlists: listWishlist)));
+    } catch (e) {
+      emit(state.copyWith(
+          wishlistStatus: WishlistStatus.error,
+          error: CustomError(message: e.toString())));
     }
   }
 }

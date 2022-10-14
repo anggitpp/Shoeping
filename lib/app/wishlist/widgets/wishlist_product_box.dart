@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:shoeping/shared/models/product.dart';
@@ -6,6 +7,7 @@ import 'package:shoeping/shared/widgets/submit_button_with_icon.dart';
 
 import '../../../config/constant.dart';
 import '../../../config/theme.dart';
+import '../../home/cubit/home_cubit.dart';
 
 class WishlistProductBox extends StatelessWidget {
   final Product product;
@@ -100,8 +102,11 @@ class WishlistProductBox extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   color: lighterBlack,
                 ),
-                child: const Icon(
-                  Icons.delete_outline,
+                child: IconButton(
+                  onPressed: () {
+                    context.read<HomeCubit>().removeWishlist(product);
+                  },
+                  icon: const Icon(Icons.delete_outline),
                   color: Colors.white,
                 ),
               ),
