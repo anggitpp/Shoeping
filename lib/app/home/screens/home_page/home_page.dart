@@ -151,9 +151,13 @@ class _HomePageState extends State<HomePage> {
                           'Most Populars',
                           style: largeText.copyWith(color: Colors.white),
                         ),
-                        Text(
-                          'See All',
-                          style: mediumLightText,
+                        GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(context, RouteName.product),
+                          child: Text(
+                            'See All',
+                            style: mediumLightText,
+                          ),
                         ),
                       ],
                     ),

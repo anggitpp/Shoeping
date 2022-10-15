@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoeping/app/home/screens/brand_page/brand_page.dart';
 import 'package:shoeping/app/home/screens/detail_brand_page/detail_brand_page.dart';
+import 'package:shoeping/app/home/screens/product_page/product_page.dart';
 import 'package:shoeping/app/home/screens/promo_page/promo_page.dart';
 import '../app/home/screens/detail_promo_page/detail_promo_page.dart';
 import '../app/splash/screens/splash_page.dart';
@@ -51,6 +52,7 @@ final routes = {
   RouteName.detailBrand: (context) => DetailBrandPage(
         brand: ModalRoute.of(context)!.settings.arguments as Brand,
       ),
+  RouteName.product: (context) => const ProductPage(),
   RouteName.detailProduct: (context) => DetailProductPage(
         product: ModalRoute.of(context)!.settings.arguments as Product,
       ),

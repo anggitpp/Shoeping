@@ -12,6 +12,7 @@ class RouteName {
   static const home = 'home';
   static const promo = 'promo';
   static const detailPromo = 'detail-promo';
+  static const product = 'product';
   static const detailProduct = 'detail-product';
   static const brand = 'brand';
   static const detailBrand = 'detail-brand';
