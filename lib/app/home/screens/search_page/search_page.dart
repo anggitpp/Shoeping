@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/product_box_with_border.dart';
 import 'package:shoeping/config/constant.dart';
 import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_divider.dart';
+import 'dart:async';
 
 import '../../../../config/theme.dart';
-import 'widgets/search_custom_tab_bar.dart';
-import 'widgets/search_recent_item.dart';
+import '../../cubit/home_cubit.dart';
+import 'widgets/last_seen_widget.dart';
+import 'widgets/search_recent_widget.dart';
 
 class HomeSearchPage extends StatefulWidget {
   const HomeSearchPage({Key? key}) : super(key: key);
@@ -18,9 +22,31 @@ class HomeSearchPage extends StatefulWidget {
 class _HomeSearchPageState extends State<HomeSearchPage> {
   final TextEditingController searchController = TextEditingController();
 
+  Timer? _debounce;
   String searchString = '';
-  String selectedTab = 'Product';
-  List<String> tabs = ['Product', 'Store'];
+  List<String> lastSeen = [];
+  List<String> searchRecents = [];
+  bool isLoading = false;
+
+  _onSearchChanged(String query) {
+    setState(() {
+      isLoading = true;
+    });
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        searchString = query;
+        isLoading = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +79,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                           height: 48,
                           child: TextField(
                             controller: searchController,
-                            onChanged: (value) {
-                              setState(() {
-                                searchString = value;
-                              });
-                            },
+                            onChanged: (value) => _onSearchChanged(value),
                             style: mediumText.copyWith(color: Colors.white),
                             decoration: InputDecoration(
                               fillColor: lighterBlack,
@@ -90,160 +112,74 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                   ],
                 ),
               ),
-              searchString.isNotEmpty
+              searchString.isEmpty
                   ? Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.defaultMargin),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 36),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Last Seen',
-                                    style: largeMediumText,
-                                  ),
-                                  Text(
-                                    'Clear All',
-                                    style: mediumText.copyWith(color: redColor),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 210,
-                          child: ListView.builder(
-                              itemCount: 10,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(
-                                      left: index == 0
-                                          ? AppSizes.defaultMargin
-                                          : 16,
-                                      right: index == 9
-                                          ? AppSizes.defaultMargin
-                                          : 0),
-                                  // child: const ProductBox(),
-                                );
-                              }),
-                        ),
+                        lastSeen.isNotEmpty
+                            ? const LastSeenWidget()
+                            : const SizedBox(),
                         const SizedBox(height: 24),
-                        const DefaultDivider(),
+                        lastSeen.isNotEmpty || searchRecents.isNotEmpty
+                            ? const DefaultDivider()
+                            : const SizedBox(),
                         const SizedBox(height: 24),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.defaultMargin),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Search Recent',
-                                    style: largeMediumText,
-                                  ),
-                                  Text(
-                                    'Clear All',
-                                    style: mediumText.copyWith(color: redColor),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              const SearchRecentItem(title: 'Sepatu Kuda'),
-                              const SizedBox(height: 8),
-                              const SearchRecentItem(title: 'Nike Jordan'),
-                            ],
-                          ),
-                        ),
+                        searchRecents.isNotEmpty
+                            ? const SearchRecentWidget()
+                            : const SizedBox(),
                       ],
                     )
-                  : Column(
-                      children: [
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        Row(
-                            children: tabs
-                                .map(
-                                  (e) => GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedTab = e;
-                                      });
-                                    },
-                                    child: SearchCustomTabBar(
-                                        e, e == selectedTab ? true : false),
+                  : !isLoading
+                      ? BlocBuilder<HomeCubit, HomeState>(
+                          builder: (context, state) {
+                            var products = state.products!
+                                .where((element) => element.name
+                                    .toLowerCase()
+                                    .contains(searchString.toLowerCase()))
+                                .toList();
+
+                            return Column(
+                              children: [
+                                const SizedBox(height: 24),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSizes.defaultMargin),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Result for "$searchString"',
+                                            style: largeText,
+                                          ),
+                                          Text(
+                                            '${products.length} Found',
+                                            style: largeText.copyWith(
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 24),
+                                      ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: products.length,
+                                        itemBuilder: (context, index) {
+                                          return ProductBoxWithBorder(
+                                            product: products[index],
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                )
-                                .toList()),
-                        const SizedBox(height: 24),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.defaultMargin),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Result for "Metcon"',
-                                    style: largeText,
-                                  ),
-                                  Text(
-                                    '2 Found',
-                                    style:
-                                        largeText.copyWith(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              selectedTab == 'Store'
-                                  ? Column(
-                                      children: [
-                                        const SizedBox(height: 24),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/images/store/adidas.png'),
-                                                      fit: BoxFit.cover),
-                                                  shape: BoxShape.circle),
-                                              alignment: Alignment.center,
-                                            ),
-                                            const SizedBox(
-                                              width: 12,
-                                            ),
-                                            Text(
-                                              'Nike Official Store',
-                                              style: largeMediumText,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  : const SizedBox(),
-                              const SizedBox(height: 24),
-                              const ProductBoxWithBorder(),
-                              const SizedBox(height: 12),
-                              const ProductBoxWithBorder(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                                ),
+                              ],
+                            );
+                          },
+                        )
+                      : SizedBox(
+                          height: AppSizes.phoneHeight(context) * 2 / 3,
+                          child: const Center(child: DefaultLoadingProgress())),
             ],
           ),
         ),
