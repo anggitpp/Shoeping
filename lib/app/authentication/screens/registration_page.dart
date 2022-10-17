@@ -103,30 +103,51 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           horizontal: AppSizes.defaultMargin),
                       child: Column(
                         children: [
-                          Container(
-                            width: AppSizes.phoneWidth(context),
-                            height: 48,
-                            decoration: BoxDecoration(
-                              color: darkGreyColor,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google-logo.png',
-                                  width: 24,
-                                  height: 24,
+                          GestureDetector(
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  duration: const Duration(seconds: 2),
+                                  backgroundColor: mainColor,
+                                  margin: EdgeInsets.only(
+                                      bottom:
+                                          AppSizes.phoneHeight(context) - 140,
+                                      left: AppSizes.defaultMargin,
+                                      right: AppSizes.defaultMargin),
+                                  content: Text(
+                                    'Sorry, still developing that feature, please use form instead',
+                                    style: mediumText.copyWith(
+                                        color: Colors.black),
+                                  ),
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  'Sign Up with Google',
-                                  style: mediumLightText.copyWith(
-                                      color: Colors.white),
-                                ),
-                              ],
+                              );
+                            },
+                            child: Container(
+                              width: AppSizes.phoneWidth(context),
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: darkGreyColor,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/google-logo.png',
+                                    width: 24,
+                                    height: 24,
+                                  ),
+                                  const SizedBox(
+                                    width: 12,
+                                  ),
+                                  Text(
+                                    'Sign Up with Google',
+                                    style: mediumLightText.copyWith(
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -240,16 +261,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 style: mediumLightText.copyWith(
                                     color: Colors.white),
                               ),
-                              Text(
-                                'Sign In',
-                                style:
-                                    mediumLightText.copyWith(color: mainColor),
+                              GestureDetector(
+                                onTap: () => Navigator.pushNamed(
+                                    context, RouteName.login),
+                                child: Text(
+                                  'Sign In',
+                                  style: mediumLightText.copyWith(
+                                      color: mainColor),
+                                ),
                               )
                             ],
                           )
                         ],
                       ),
                     ),
+                    SizedBox(height: 50),
                   ],
                 ),
               ),
