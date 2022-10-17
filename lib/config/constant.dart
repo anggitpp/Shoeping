@@ -20,3 +20,4 @@ final userCollection = FirebaseFirestore.instance.collection('users');
 const baseURL = 'https://shoeping.buildwithapp.net';
 const apiURL = '$baseURL/api';
 const imageAPIURL = '$baseURL/storage/';
+const databaseApplication = 'shoeping.db';

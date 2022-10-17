@@ -49,6 +49,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   recase: ^4.0.0
   shared_preferences: ^2.0.15
+  sqflite: ^2.1.0+1
   supercharged: ^2.1.1
   validators: ^3.0.0
 
