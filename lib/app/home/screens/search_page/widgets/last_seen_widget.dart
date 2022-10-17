@@ -43,6 +43,7 @@ class LastSeenWidget extends StatelessWidget {
                   );
                 }),
           ),
+          SizedBox(height: 24),
         ],
       ),
     );

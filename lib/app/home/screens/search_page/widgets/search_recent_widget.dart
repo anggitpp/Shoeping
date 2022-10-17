@@ -32,6 +32,7 @@ class SearchRecentWidget extends StatelessWidget {
           const SearchRecentItem(title: 'Sepatu Kuda'),
           const SizedBox(height: 8),
           const SearchRecentItem(title: 'Nike Jordan'),
+          SizedBox(height: 24),
         ],
       ),
     );

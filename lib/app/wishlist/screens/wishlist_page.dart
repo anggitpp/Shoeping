@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
 import 'package:shoeping/app/wishlist/widgets/wishlist_product_box.dart';
-import 'package:shoeping/config/route_name.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/error_dialog.dart';
 
@@ -55,45 +54,13 @@ class WishlistPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: AppSizes.phoneWidthMargin(context) -
-                                16 -
-                                AppSizes.defaultMargin,
-                            height: 48,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                fillColor: lighterBlack,
-                                prefixIcon: Icon(
-                                  Icons.search_outlined,
-                                  color: secondaryColor,
-                                ),
-                                hintText: 'Search any product',
-                                hintStyle: mediumText,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          GestureDetector(
-                            onTap: () =>
-                                Navigator.pushNamed(context, RouteName.cart),
-                            child: const Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
+                          Text('Your Wishlist', style: largeMediumText),
+                          const Icon(Icons.shopping_cart_outlined,
+                              color: Colors.white),
                         ],
                       ),
-                      const SizedBox(height: 27),
-                      Text('Your Wishlist Product', style: largeMediumText),
                       const SizedBox(height: 16),
                       BlocBuilder<HomeCubit, HomeState>(
                         builder: (context, state) {
