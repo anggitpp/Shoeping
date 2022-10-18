@@ -152,7 +152,9 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       var db = await openDatabase(databaseApplication);
 
-      await homeLocalRepository.submitSearch(db, search);
+      if (search.keyword.isNotEmpty) {
+        await homeLocalRepository.submitSearch(db, search);
+      }
 
       final List<SearchRecent> searchRecents =
           await homeLocalRepository.getRecents(db);
@@ -175,6 +177,28 @@ class HomeCubit extends Cubit<HomeState> {
       var db = await openDatabase(databaseApplication);
 
       await homeLocalRepository.deleteSearch(db, search.id);
+
+      final List<SearchRecent> searchRecents =
+          await homeLocalRepository.getRecents(db);
+      emit(state.copyWith(
+          searchRecentStatus: SearchRecentStatus.success,
+          isLoadingSearch: false,
+          searchRecents: searchRecents));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+          searchRecentStatus: SearchRecentStatus.error,
+          error: e,
+          isLoadingSearch: false));
+    }
+  }
+
+  Future<void> deleteAllSearch() async {
+    emit(state.copyWith(
+        searchRecentStatus: SearchRecentStatus.loading, isLoadingSearch: true));
+    try {
+      var db = await openDatabase(databaseApplication);
+
+      await homeLocalRepository.deleteAllSearch(db);
 
       final List<SearchRecent> searchRecents =
           await homeLocalRepository.getRecents(db);

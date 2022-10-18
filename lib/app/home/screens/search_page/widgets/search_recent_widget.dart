@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/home/cubit/home_cubit.dart';
 
 import '../../../../../config/constant.dart';
 import '../../../../../config/theme.dart';
@@ -18,6 +20,7 @@ class SearchRecentWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
       child: Column(
         children: [
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -25,9 +28,12 @@ class SearchRecentWidget extends StatelessWidget {
                 'Search Recent',
                 style: largeMediumText,
               ),
-              Text(
-                'Clear All',
-                style: mediumText.copyWith(color: redColor),
+              GestureDetector(
+                onTap: () => context.read<HomeCubit>().deleteAllSearch(),
+                child: Text(
+                  'Clear All',
+                  style: mediumText.copyWith(color: redColor),
+                ),
               ),
             ],
           ),

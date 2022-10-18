@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:shoeping/app/home/models/search_recent.dart';
+import 'package:shoeping/config/constant.dart';
+import 'package:shoeping/config/route_name.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
 import 'package:shoeping/shared/widgets/error_dialog.dart';
 import 'package:shoeping/shared/widgets/product_box.dart';
 import 'package:shoeping/shared/widgets/product_box_with_border.dart';
-import 'package:shoeping/config/constant.dart';
-import 'package:shoeping/config/route_name.dart';
-import 'package:shoeping/shared/widgets/default_divider.dart';
-import 'dart:async';
 
 import '../../../../config/theme.dart';
 import '../../cubit/home_cubit.dart';
@@ -16,7 +18,9 @@ import 'widgets/last_seen_widget.dart';
 import 'widgets/search_recent_widget.dart';
 
 class HomeSearchPage extends StatefulWidget {
-  const HomeSearchPage({Key? key}) : super(key: key);
+  const HomeSearchPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeSearchPage> createState() => _HomeSearchPageState();
@@ -28,12 +32,23 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
   Timer? _debounce;
   String searchString = '';
   List<String> lastSeen = [];
+  Object? args;
 
   @override
   void initState() {
     super.initState();
 
     context.read<HomeCubit>().getSearchRecents();
+
+    Future.delayed(Duration.zero, () {
+      setState(() {
+        args = ModalRoute.of(context)?.settings.arguments;
+        if (args != null) {
+          searchController.text = args.toString();
+          searchString = args.toString();
+        }
+      });
+    });
   }
 
   @override
@@ -46,7 +61,6 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
       searchString = query;
-
       context
           .read<HomeCubit>()
           .submitSearch(SearchRecent(id: 0, keyword: searchString));
@@ -85,7 +99,10 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                         Row(
                           children: [
                             InkWell(
-                              onTap: () => Navigator.pop(context),
+                              onTap: () {
+                                Navigator.popUntil(context,
+                                    (route) => route.settings.name == 'main');
+                              },
                               child: const Icon(
                                 Icons.arrow_back,
                                 color: Colors.white,

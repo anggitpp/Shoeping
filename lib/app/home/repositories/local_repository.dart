@@ -7,6 +7,9 @@ class HomeLocalRepository {
 
   Future<int> submitSearch(Database db, SearchRecent searchRecent) async {
     try {
+      await db.delete(tableSearch,
+          where: 'keyword = ?', whereArgs: [searchRecent.keyword]);
+
       int id = await db.insert(tableSearch, searchRecent.toJson());
 
       return id;
@@ -20,7 +23,7 @@ class HomeLocalRepository {
 
   Future<List<SearchRecent>> getRecents(Database db) async {
     try {
-      await db.query(tableSearch, orderBy: 'id DESC');
+      await db.query(tableSearch, orderBy: 'id DESC', limit: 5);
     } on DatabaseException catch (e) {
       throw CustomError(
           code: 'Database Exception',
@@ -28,7 +31,7 @@ class HomeLocalRepository {
           plugin: 'sqflite exception');
     }
 
-    var recents = await db.query(tableSearch, orderBy: 'id DESC');
+    var recents = await db.query(tableSearch, orderBy: 'id DESC', limit: 5);
 
     List<SearchRecent> searchList = recents.isNotEmpty
         ? recents.map((e) => SearchRecent.fromJson(e)).toList()
@@ -40,6 +43,17 @@ class HomeLocalRepository {
   Future<void> deleteSearch(Database db, int id) async {
     try {
       await db.delete(tableSearch, where: 'id = ?', whereArgs: [id]);
+    } on DatabaseException catch (e) {
+      throw CustomError(
+          code: 'Database Exception',
+          message: e.toString(),
+          plugin: 'sqflite exception');
+    }
+  }
+
+  Future<void> deleteAllSearch(Database db) async {
+    try {
+      await db.delete(tableSearch);
     } on DatabaseException catch (e) {
       throw CustomError(
           code: 'Database Exception',
