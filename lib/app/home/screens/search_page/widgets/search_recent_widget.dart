@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config/constant.dart';
 import '../../../../../config/theme.dart';
+import '../../../models/search_recent.dart';
 import 'search_recent_item.dart';
 
 class SearchRecentWidget extends StatelessWidget {
+  final List<SearchRecent> searchRecents;
   const SearchRecentWidget({
     Key? key,
+    required this.searchRecents,
   }) : super(key: key);
 
   @override
@@ -29,10 +32,16 @@ class SearchRecentWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          const SearchRecentItem(title: 'Sepatu Kuda'),
-          const SizedBox(height: 8),
-          const SearchRecentItem(title: 'Nike Jordan'),
-          SizedBox(height: 24),
+          Column(
+            children: searchRecents
+                .map((e) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: SearchRecentItem(
+                        searchRecent: e,
+                      ),
+                    ))
+                .toList(),
+          ),
         ],
       ),
     );

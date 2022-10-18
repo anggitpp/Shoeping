@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shoeping/config/theme.dart';
 
 import '../../../config/route_name.dart';
+import '../../../shared/utils/database_helper.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -23,7 +24,10 @@ class _SplashPageState extends State<SplashPage> {
     Timer(const Duration(seconds: 2), () {
       _listener = FirebaseAuth.instance.authStateChanges().listen((User? user) {
         Navigator.pushReplacementNamed(
-            context, user == null ? RouteName.login : RouteName.main);
+                context, user == null ? RouteName.login : RouteName.main)
+            .then((value) async {
+          await DatabaseHelper.instance.database;
+        });
       });
     });
   }

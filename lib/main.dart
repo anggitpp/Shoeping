@@ -15,6 +15,7 @@ import '../config/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app/authentication/repositories/auth_repository.dart';
 import 'app/home/cubit/home_cubit.dart';
+import 'app/home/repositories/local_repository.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
               firebaseAuth: FirebaseAuth.instance),
         ),
         RepositoryProvider(create: ((context) => HomeRepository())),
+        RepositoryProvider(create: ((context) => HomeLocalRepository())),
         RepositoryProvider(create: ((context) => ProfileRepository())),
         RepositoryProvider(create: ((context) => AddressRepository())),
       ],
@@ -61,8 +63,10 @@ class MyApp extends StatelessWidget {
                 LoginCubit(authRepository: context.read<AuthRepository>()),
           ),
           BlocProvider<HomeCubit>(
-            create: (context) =>
-                HomeCubit(homeRepository: context.read<HomeRepository>()),
+            create: (context) => HomeCubit(
+              homeRepository: context.read<HomeRepository>(),
+              homeLocalRepository: context.read<HomeLocalRepository>(),
+            ),
           ),
           BlocProvider<ProfileCubit>(
             create: (context) => ProfileCubit(

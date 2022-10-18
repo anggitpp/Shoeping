@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoeping/app/home/models/search_recent.dart';
 import 'package:shoeping/shared/widgets/default_loading_progress.dart';
+import 'package:shoeping/shared/widgets/error_dialog.dart';
 import 'package:shoeping/shared/widgets/product_box.dart';
 import 'package:shoeping/shared/widgets/product_box_with_border.dart';
 import 'package:shoeping/config/constant.dart';
@@ -26,20 +28,12 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
   Timer? _debounce;
   String searchString = '';
   List<String> lastSeen = [];
-  List<String> searchRecents = [];
-  bool isLoading = false;
 
-  _onSearchChanged(String query) {
-    setState(() {
-      isLoading = true;
-    });
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      setState(() {
-        searchString = query;
-        isLoading = false;
-      });
-    });
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<HomeCubit>().getSearchRecents();
   }
 
   @override
@@ -48,12 +42,28 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     super.dispose();
   }
 
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      searchString = query;
+
+      context
+          .read<HomeCubit>()
+          .submitSearch(SearchRecent(id: 0, keyword: searchString));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BlocBuilder<HomeCubit, HomeState>(
+          child: BlocConsumer<HomeCubit, HomeState>(
+            listener: (context, state) {
+              if (state.searchRecentStatus == SearchRecentStatus.error) {
+                errorDialog(context, state.error);
+              }
+            },
             builder: (context, state) {
               var searchedProducts = state.products!
                   .where((element) => element.name
@@ -128,11 +138,15 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                             lastSeen.isNotEmpty
                                 ? const LastSeenWidget()
                                 : const SizedBox(),
-                            lastSeen.isNotEmpty || searchRecents.isNotEmpty
-                                ? const DefaultDivider()
-                                : const SizedBox(),
-                            searchRecents.isNotEmpty
-                                ? const SearchRecentWidget()
+                            const SizedBox(height: 15),
+                            // lastSeen.isNotEmpty ||
+                            //     state.searchRecents?.isNotEmpty
+                            // ? const DefaultDivider()
+                            // : const SizedBox(),
+                            state.searchRecents.isNotEmpty
+                                ? SearchRecentWidget(
+                                    searchRecents: state.searchRecents,
+                                  )
                                 : const SizedBox(),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -160,7 +174,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                             ),
                           ],
                         )
-                      : !isLoading
+                      : !state.isLoadingSearch
                           ? Column(
                               children: [
                                 const SizedBox(height: 24),

@@ -35,6 +35,13 @@ enum WishlistStatus {
   error,
 }
 
+enum SearchRecentStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
 class HomeState extends Equatable {
   final UserStatus userStatus;
   final UserModel? userModel;
@@ -45,6 +52,9 @@ class HomeState extends Equatable {
   final PromoStatus promoStatus;
   final List<Promo>? promos;
   final WishlistStatus wishlistStatus;
+  final List<SearchRecent> searchRecents;
+  final SearchRecentStatus searchRecentStatus;
+  final bool isLoadingSearch;
   final CustomError error;
   const HomeState({
     required this.userStatus,
@@ -56,6 +66,9 @@ class HomeState extends Equatable {
     required this.promoStatus,
     this.promos,
     required this.wishlistStatus,
+    required this.searchRecents,
+    required this.searchRecentStatus,
+    required this.isLoadingSearch,
     required this.error,
   });
 
@@ -66,6 +79,9 @@ class HomeState extends Equatable {
         brandStatus: BrandStatus.initial,
         promoStatus: PromoStatus.initial,
         wishlistStatus: WishlistStatus.initial,
+        searchRecentStatus: SearchRecentStatus.initial,
+        isLoadingSearch: false,
+        searchRecents: [],
         error: CustomError());
   }
 
@@ -79,6 +95,9 @@ class HomeState extends Equatable {
     PromoStatus? promoStatus,
     List<Promo>? promos,
     WishlistStatus? wishlistStatus,
+    List<SearchRecent>? searchRecents,
+    SearchRecentStatus? searchRecentStatus,
+    bool? isLoadingSearch,
     CustomError? error,
   }) {
     return HomeState(
@@ -91,13 +110,16 @@ class HomeState extends Equatable {
       promoStatus: promoStatus ?? this.promoStatus,
       promos: promos ?? this.promos,
       wishlistStatus: wishlistStatus ?? this.wishlistStatus,
+      searchRecents: searchRecents ?? this.searchRecents,
+      searchRecentStatus: searchRecentStatus ?? this.searchRecentStatus,
+      isLoadingSearch: isLoadingSearch ?? this.isLoadingSearch,
       error: error ?? this.error,
     );
   }
 
   @override
   String toString() {
-    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, promoStatus: $promoStatus, promos: $promos, wishlistStatus: $wishlistStatus, error: $error)';
+    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, promoStatus: $promoStatus, promos: $promos, wishlistStatus: $wishlistStatus, searchRecents: $searchRecents, searchRecentStatus: $searchRecentStatus, isLoadingSearch: $isLoadingSearch, error: $error)';
   }
 
   @override
@@ -112,6 +134,9 @@ class HomeState extends Equatable {
       promoStatus,
       promos ?? '',
       wishlistStatus,
+      searchRecents,
+      searchRecentStatus,
+      isLoadingSearch,
       error,
     ];
   }
