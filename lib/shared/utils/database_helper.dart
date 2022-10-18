@@ -24,23 +24,23 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     //CREATE CART TABLE
-    await db.execute('''CREATE TABLE cart (
+    await db.execute('''CREATE TABLE carts (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           product_id INTEGER,
-          qty INTEGER,
+          qty INTEGER
           )''');
 
     //CREATE SEARCH RECENT TABLE
-    await db.execute('''CREATE TABLE search_recent (
+    await db.execute('''CREATE TABLE search_recents (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          keyword TEXT,
+          keyword TEXT
           )''');
 
     //CREATE LAST SEEN PRODUCT TABLE
-    await db.execute('''CREATE TABLE last_seen_product (
+    await db.execute('''CREATE TABLE last_seen_products (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           product_id INTEGER,
-          seen_date datetime,
+          seen_date datetime
           )''');
   }
 }
