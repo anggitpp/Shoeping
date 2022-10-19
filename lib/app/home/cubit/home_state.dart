@@ -42,6 +42,13 @@ enum SearchRecentStatus {
   error,
 }
 
+enum LastSeenStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
 class HomeState extends Equatable {
   final UserStatus userStatus;
   final UserModel? userModel;
@@ -54,6 +61,8 @@ class HomeState extends Equatable {
   final WishlistStatus wishlistStatus;
   final List<SearchRecent> searchRecents;
   final SearchRecentStatus searchRecentStatus;
+  final List<LastSeen> lastSeens;
+  final LastSeenStatus lastSeenStatus;
   final bool isLoadingSearch;
   final CustomError error;
   const HomeState({
@@ -68,6 +77,8 @@ class HomeState extends Equatable {
     required this.wishlistStatus,
     required this.searchRecents,
     required this.searchRecentStatus,
+    required this.lastSeens,
+    required this.lastSeenStatus,
     required this.isLoadingSearch,
     required this.error,
   });
@@ -82,6 +93,8 @@ class HomeState extends Equatable {
         searchRecentStatus: SearchRecentStatus.initial,
         isLoadingSearch: false,
         searchRecents: [],
+        lastSeenStatus: LastSeenStatus.initial,
+        lastSeens: [],
         error: CustomError());
   }
 
@@ -97,6 +110,8 @@ class HomeState extends Equatable {
     WishlistStatus? wishlistStatus,
     List<SearchRecent>? searchRecents,
     SearchRecentStatus? searchRecentStatus,
+    List<LastSeen>? lastSeens,
+    LastSeenStatus? lastSeenStatus,
     bool? isLoadingSearch,
     CustomError? error,
   }) {
@@ -112,6 +127,8 @@ class HomeState extends Equatable {
       wishlistStatus: wishlistStatus ?? this.wishlistStatus,
       searchRecents: searchRecents ?? this.searchRecents,
       searchRecentStatus: searchRecentStatus ?? this.searchRecentStatus,
+      lastSeens: lastSeens ?? this.lastSeens,
+      lastSeenStatus: lastSeenStatus ?? this.lastSeenStatus,
       isLoadingSearch: isLoadingSearch ?? this.isLoadingSearch,
       error: error ?? this.error,
     );
@@ -119,7 +136,7 @@ class HomeState extends Equatable {
 
   @override
   String toString() {
-    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, promoStatus: $promoStatus, promos: $promos, wishlistStatus: $wishlistStatus, searchRecents: $searchRecents, searchRecentStatus: $searchRecentStatus, isLoadingSearch: $isLoadingSearch, error: $error)';
+    return 'HomeState(userStatus: $userStatus, userModel: $userModel, productStatus: $productStatus, products: $products, brandStatus: $brandStatus, brands: $brands, promoStatus: $promoStatus, promos: $promos, wishlistStatus: $wishlistStatus, searchRecents: $searchRecents, searchRecentStatus: $searchRecentStatus, lastSeens: $lastSeens, lastSeenStatus: $lastSeenStatus, isLoadingSearch: $isLoadingSearch, error: $error)';
   }
 
   @override
@@ -136,6 +153,8 @@ class HomeState extends Equatable {
       wishlistStatus,
       searchRecents,
       searchRecentStatus,
+      lastSeens,
+      lastSeenStatus,
       isLoadingSearch,
       error,
     ];

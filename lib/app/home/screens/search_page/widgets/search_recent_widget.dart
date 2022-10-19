@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoeping/app/home/cubit/home_cubit.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
 
 import '../../../../../config/constant.dart';
 import '../../../../../config/theme.dart';
@@ -48,6 +49,8 @@ class SearchRecentWidget extends StatelessWidget {
                     ))
                 .toList(),
           ),
+          SizedBox(height: 20),
+          DefaultDivider(),
         ],
       ),
     );

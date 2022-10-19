@@ -31,7 +31,6 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
 
   Timer? _debounce;
   String searchString = '';
-  List<String> lastSeen = [];
   Object? args;
 
   @override
@@ -39,6 +38,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
     super.initState();
 
     context.read<HomeCubit>().getSearchRecents();
+    context.read<HomeCubit>().getLastSeen();
 
     Future.delayed(Duration.zero, () {
       setState(() {
@@ -152,14 +152,13 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                   searchString.isEmpty
                       ? Column(
                           children: [
-                            lastSeen.isNotEmpty
-                                ? const LastSeenWidget()
+                            state.lastSeens.isNotEmpty
+                                ? LastSeenWidget(
+                                    lastSeens: state.lastSeens,
+                                    products: state.products!,
+                                  )
                                 : const SizedBox(),
                             const SizedBox(height: 15),
-                            // lastSeen.isNotEmpty ||
-                            //     state.searchRecents?.isNotEmpty
-                            // ? const DefaultDivider()
-                            // : const SizedBox(),
                             state.searchRecents.isNotEmpty
                                 ? SearchRecentWidget(
                                     searchRecents: state.searchRecents,
@@ -171,8 +170,6 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const SizedBox(height: 20),
-                                  const DefaultDivider(),
                                   const SizedBox(height: 20),
                                   Text(
                                     'Rekomendasi Produk',
@@ -236,6 +233,7 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
                                 child: DefaultLoadingProgress(),
                               ),
                             ),
+                  SizedBox(height: 50),
                 ],
               );
             },

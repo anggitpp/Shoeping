@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:shoeping/app/home/cubit/home_cubit.dart';
+import 'package:shoeping/app/home/models/last_seen.dart';
+import 'package:shoeping/config/route_name.dart';
+import 'package:shoeping/shared/models/product.dart';
+import 'package:shoeping/shared/widgets/default_divider.dart';
 
 import '../../../../../config/constant.dart';
 import '../../../../../config/theme.dart';
+import '../../../../../shared/widgets/product_box.dart';
 
 class LastSeenWidget extends StatelessWidget {
+  final List<Product> products;
+  final List<LastSeen> lastSeens;
   const LastSeenWidget({
     Key? key,
+    required this.products,
+    required this.lastSeens,
   }) : super(key: key);
 
   @override
@@ -13,8 +25,9 @@ class LastSeenWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultMargin),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 36),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -22,28 +35,26 @@ class LastSeenWidget extends StatelessWidget {
                 'Last Seen',
                 style: largeMediumText,
               ),
-              Text(
-                'Clear All',
-                style: mediumText.copyWith(color: redColor),
-              ),
             ],
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            height: 210,
-            child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        left: index == 0 ? AppSizes.defaultMargin : 16,
-                        right: index == 9 ? AppSizes.defaultMargin : 0),
-                    // child: const ProductBox(),
-                  );
-                }),
+          Wrap(
+            spacing: 20,
+            runSpacing: 20,
+            children: lastSeens.map((e) {
+              final product =
+                  products.firstWhere((element) => element.id == e.productId);
+              return GestureDetector(
+                  onTap: () => Navigator.pushNamed(
+                        context,
+                        RouteName.detailProduct,
+                        arguments: product,
+                      ),
+                  child: ProductBox(product));
+            }).toList(),
           ),
-          SizedBox(height: 24),
+          SizedBox(height: 20),
+          DefaultDivider(),
         ],
       ),
     );

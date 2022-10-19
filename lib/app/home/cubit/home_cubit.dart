@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shoeping/app/authentication/models/user.dart';
+import 'package:shoeping/app/home/models/last_seen.dart';
 import 'package:shoeping/app/home/models/search_recent.dart';
 import 'package:shoeping/app/home/repositories/home_repository.dart';
 import 'package:shoeping/app/home/repositories/local_repository.dart';
@@ -211,6 +212,24 @@ class HomeCubit extends Cubit<HomeState> {
           searchRecentStatus: SearchRecentStatus.error,
           error: e,
           isLoadingSearch: false));
+    }
+  }
+
+  Future<void> getLastSeen() async {
+    emit(state.copyWith(searchRecentStatus: SearchRecentStatus.loading));
+    try {
+      var db = await openDatabase(databaseApplication);
+
+      final List<LastSeen> lastSeens =
+          await homeLocalRepository.getLastSeen(db);
+
+      emit(state.copyWith(
+          lastSeenStatus: LastSeenStatus.success, lastSeens: lastSeens));
+    } on CustomError catch (e) {
+      emit(state.copyWith(
+        lastSeenStatus: LastSeenStatus.error,
+        error: e,
+      ));
     }
   }
 }

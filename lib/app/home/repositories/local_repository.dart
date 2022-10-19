@@ -67,7 +67,7 @@ class HomeLocalRepository {
   Future<int> storeLastSeen(Database db, LastSeen lastSeen) async {
     try {
       await db.delete('last_seen_products',
-          where: 'id = ?', whereArgs: [lastSeen.productId]);
+          where: 'product_id = ?', whereArgs: [lastSeen.productId]);
 
       int id = await db.insert('last_seen_products', lastSeen.toJson());
 
@@ -78,5 +78,24 @@ class HomeLocalRepository {
           message: e.toString(),
           plugin: 'sqflite exception');
     }
+  }
+
+  Future<List<LastSeen>> getLastSeen(Database db) async {
+    try {
+      await db.query('last_seen_products', orderBy: 'id DESC', limit: 5);
+    } on DatabaseException catch (e) {
+      throw CustomError(
+          code: 'Database Exception',
+          message: e.toString(),
+          plugin: 'sqflite exception');
+    }
+
+    var lastSeen = await db.query('last_seen_products', orderBy: 'id DESC');
+
+    List<LastSeen> lastSeenList = lastSeen.isNotEmpty
+        ? lastSeen.map((e) => LastSeen.fromJson(e)).toList()
+        : [];
+
+    return lastSeenList;
   }
 }
