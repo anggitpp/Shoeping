@@ -10,6 +10,7 @@ import 'package:shoeping/app/authentication/cubits/registration/registration_cub
 import 'package:shoeping/app/home/repositories/home_repository.dart';
 import 'package:shoeping/app/profile/cubit/profile_cubit.dart';
 import 'package:shoeping/app/profile/repository/profile_repository.dart';
+import 'package:shoeping/shared/utils/last_seen_observer.dart';
 import '../config/routes.dart';
 import '../config/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -83,6 +84,9 @@ class MyApp extends StatelessWidget {
           title: 'Shoeping',
           theme: darkTheme,
           routes: routes,
+          navigatorObservers: [
+            LastSeenObserver(),
+          ],
         ),
       ),
     );

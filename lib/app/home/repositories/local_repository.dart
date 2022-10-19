@@ -1,5 +1,7 @@
+import 'package:shoeping/app/home/models/last_seen.dart';
 import 'package:shoeping/app/home/models/search_recent.dart';
 import 'package:shoeping/shared/models/custom_error.dart';
+import 'package:shoeping/shared/models/product.dart';
 import 'package:sqflite/sqflite.dart';
 
 class HomeLocalRepository {
@@ -54,6 +56,22 @@ class HomeLocalRepository {
   Future<void> deleteAllSearch(Database db) async {
     try {
       await db.delete(tableSearch);
+    } on DatabaseException catch (e) {
+      throw CustomError(
+          code: 'Database Exception',
+          message: e.toString(),
+          plugin: 'sqflite exception');
+    }
+  }
+
+  Future<int> storeLastSeen(Database db, LastSeen lastSeen) async {
+    try {
+      await db.delete('last_seen_products',
+          where: 'id = ?', whereArgs: [lastSeen.productId]);
+
+      int id = await db.insert('last_seen_products', lastSeen.toJson());
+
+      return id;
     } on DatabaseException catch (e) {
       throw CustomError(
           code: 'Database Exception',
